@@ -1,0 +1,152 @@
+body {
+	margin: 0px;
+}
+
+.main-logo-sign-white-first {
+	position: relative;
+	animation-name: animation-white-sign;
+	animation-duration: 1.2s;
+}
+
+.main-logo-sign-white-join-button {
+	/*font-size: 60px;*/
+	/*font-weight: 400;*/
+	position: relative;
+	/*left: -20px;*/
+	font-size: 30px;
+	animation-name: animation-white-sign;
+	animation-duration: 1.2s;
+	transition: 1s;
+	left: 0px;
+	border-bottom: 1px solid white;
+}
+
+.main-logo-sign-white-join-button-a {
+	/*font-size: 60px;*/
+	/*font-weight: 400;*/
+	display: inline;
+	color: #2B2E33;
+	text-decoration: none;
+	position: relative;
+	/*left: -20px;*/
+	font-size: 30px;
+	/*animation-name: animation-white-sign;*/
+	/*animation-duration: 1.2s;*/
+	transition: 1s;
+	left: 0px;
+	border-bottom: 1px solid white;
+
+}
+
+.main-logo-sign-white-join-button-a:hover {
+	cursor: pointer;
+	/*left: 20px;*/
+	border-bottom: 1px solid rgb(100, 100, 100);
+}
+
+.main-logo-sign-white {
+	position: absolute;
+	left: calc(50% + 50px);
+	top: 320px;
+	font-kerning: normal;
+	line-height: 1;
+	font-family: "Graphik Web", Helvetica, Arial, serif;
+	letter-spacing: -0.4px;
+	-webkit-font-smoothing: antialiased;
+	color: #2B2E33;
+	z-index: 100;
+	font-size: 60px;
+	font-weight: 200;
+	transition: 0.7s;
+}
+
+.panel-main-logo {
+	/*background: url(http://www.imgbase.info/images/safe-wallpapers/photography/miscellaneous/53218_miscellaneous_dark_misty_night.jpg) 100%;*/
+	position: relative;
+	background: #2B2E33;
+	overflow: hidden;
+	height: 100vh;
+	font-family: "Graphik Web", Helvetica, Arial, serif;
+}
+.main-logo-sign {
+	position: absolute;
+	top: 225px;
+	left: calc(50% - 290px);
+	/*color: rgb(230, 230, 230);*/
+	color: white;
+	font-weight: 700;
+	/*text-shadow: 3px -3px rgb(100, 100, 100);*/
+}
+.main-logo-sign-first {
+	font-family: "Graphik Web", Helvetica, Arial, serif;
+	font-size: 50px;
+	animation-name: animation-logo-first;
+	animation-duration: 0.8s;
+	position: relative;
+}
+
+.main-logo-sign-second {
+	font-family: "Graphik Web", Helvetica, Arial, serif;
+	font-size: 50px;
+	position: relative;
+	left: 20px;
+	animation-name: animation-logo-first;
+	animation-duration: 0.8s;
+	position: relative;
+}
+
+.main-logo-super-text {
+	font-family: "Graphik Web", Helvetica, Arial, sans-serif, monospace;
+	position: relative;
+	left: 30px;
+	animation-name: animation-logo-first;
+	animation-duration: 0.8s;
+	font-weight: 300;
+}
+
+.cross-panel {
+	background: white;
+	width: 3000px;
+	height: 3000px;
+	animation-name: animation-cross-panel;
+	animation-duration: 1s;
+	transform: rotate3d(1, 0, 1, 20deg);
+	position: relative;
+	top: -100px;
+	left: calc(50% - 230px);
+	transition: 1s;
+}
+
+@keyframes animation-white-sign {
+	0% {
+		opacity: 0;
+	}
+	30% {
+		top: 10px;
+		opacity: 0;
+	}
+	100% {
+		top: 0px;
+		opacity: 1;
+	}
+}
+
+@keyframes animation-cross-panel {
+	0% {
+		transform: rotate3d(1, 0, 1, 15deg);
+	}
+	100% {
+		transform: rotate3d(1, 0, 1, 20deg);
+	}
+}
+
+@keyframes animation-logo-first {
+	0%   {
+		top: 10px;
+		opacity: 0;
+	}
+	100% {
+		top: 0px;
+		opacity: 1;
+	}
+}

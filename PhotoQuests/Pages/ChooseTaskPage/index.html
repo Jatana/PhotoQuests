@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Kekus</title>
+	<link rel="stylesheet" href="/static/css/MainStyles.css?always_update=true">
+	<link rel="stylesheet" href="/static/css/HeaderStyles.css?always_update=true">
+	<link rel="stylesheet" href="/static/css/LoginStyles.css?always_update7=true">
+	<link rel="stylesheet" href="/static/css/ChooseTasksStyles.css?always_update2=true">
+	<link rel="stylesheet" href="/static/css/ChooseTasksSettingsHeadersStyles.css?always_update123=true">
+	<link rel="stylesheet" href="/static/css/UIStyles.css?always_update=true">
+	<link rel="stylesheet" href="/static/css/AccountPanelStyles.css?always_update=true">
+	<link rel="stylesheet" type="text/css"
+		  href="https://fonts.googleapis.com/css?family=Raleway:400i">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina|Lato|Cabin" rel="stylesheet">
+</head>
+<body style="position: relative;">
+	<script src="/static/jquery-3.1.1.min.js"></script>
+	<div id="screen-darker">
+	</div>
+	<div id="div-register-form">
+		<table class="table-login-form">
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">account_circle</i>		
+				</td>
+				<td class="td-pre-input">
+					<input type="text" id="register-input-username" class="login-input" placeholder="Username">
+				</td>
+			</tr>
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">lock</i>	
+				</td>
+				<td class="td-pre-input">
+					<input type="password" id="register-input-password" class="login-input" placeholder="Password">
+				</td>
+			</tr>
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">email</i>	
+				</td>
+				<td class="td-pre-input">
+					<input type="text" id="register-input-email" class="login-input" placeholder="email">
+				</td>
+			</tr>
+		</table>
+		<div id="register-error"></div>
+		<div id="action-register-button">register</div>
+	</div>
+
+	<div id="div-login-form">
+		<table class="table-login-form">
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">account_circle</i>		
+				</td>
+				<td class="td-pre-input">
+					<input type="text" id="login-input-username" class="login-input" placeholder="Username">
+				</td>
+			</tr>
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">lock</i>	
+				</td>
+				<td class="td-pre-input">
+					<input type="password" id="login-input-password" class="login-input" placeholder="Password">
+				</td>
+			</tr>
+		</table>
+		<div id="login-error"></div>
+		<div id="action-login-button">log in</div>
+	</div>
+	<table>
+		<tr class="tr-settings-header">
+			<td class="div-choose-filters" style="border-bottom: 1px solid #bdc3c7">
+				<table class="filters-table" id="filters-table">
+					<tr>
+						<td>
+							<i class="material-icons choose-filter">near_me</i>
+							<div class="choose-filter-sign">near me</div>
+						</td>
+						<td>
+							<i class="material-icons choose-filter">trending_up</i>
+							<div class="choose-filter-sign">easy</div>
+						</td>
+						<td>
+							<i class="material-icons choose-filter">date_range</i>
+							<div class="choose-filter-sign">all dates</div>
+						</td>
+						<td>
+							<i class="material-icons choose-filter">subject</i>
+							<div class="choose-filter-sign">subject</div>
+						</td>
+						<td>
+							<i class="material-icons choose-filter">account_circle</i>
+							<div class="choose-filter-sign">author</div>
+						</td>
+					</tr>
+				</table>
+				<script>
+					let filtersTable = document.getElementById("filters-table");
+					let elems = filtersTable.childNodes[1].childNodes[0].childNodes;
+					for (let elem of elems) {
+						if (elem.tagName = 'TD') {
+							elem.onclick = () => {
+								elem.style.color = '#3498db';
+							}
+						}
+					}
+				</script>
+			</td>
+			<td class="div-geo-map-input" style="border-bottom: 1px solid #bdc3c7">
+				<table style="width: 100%;">
+					<tr>
+						<td style="width: 400px">
+							<input type="text" id="geo-map-search-input">
+							<div class="input-placeholder" id="map-input-placeholder">type place</div>
+							<script>
+								{
+									console.log($);
+									$('#map-input-placeholder').on('click', () => {
+										// console.log('onclick')
+										// console.log($('#map-input-placeholder'));
+										$('#map-input-placeholder')[0].style.display = 'none';
+										$('#geo-map-search-input')[0].focus();
+									});
+
+									$('#geo-map-search-input').focus(() => {
+										$('#map-input-placeholder')[0].style.display = 'none';
+									});
+
+									$('#geo-map-search-input').blur(() => {
+										if ($('#geo-map-search-input')[0].value == '') {
+											$('#map-input-placeholder')[0].style.display = 'block';
+										}
+									});						
+								}
+							</script>
+						</td>
+						<td style="text-align: right">
+							<div id="login-button">Log in</div>
+							<div id="register-button" class="button">Sign up</div>
+							<div id="account-info" style="display: none">
+								<div id="add-task-button" style="display: inline;">
+									<i class="material-icons add-task-icon">add_circle</i>
+									add task
+								</div>
+
+								<div class="sub-account-panel">
+									<img id="self-account-icon" src="/static/Logos/SomeLogo.png" height="27px">
+									<div id="self-account-username" class="account-username">
+										Admin
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+		<tr style="vertical-align: top">
+			<td style="background: rgb(240, 240, 240);z-index:-3;" id="main-panel-ava-tasks-td">
+				<div style="overflow-y: scroll" id="task-base">
+				<!-- 	<div class="ava-task-div">
+						<div class="task-geopos-div">
+							<i class="material-icons">place</i>
+							<div style="display: inline; position: relative;top: -6px">London 23</div>
+							<div class="task-claim-button">claim task</div>
+						</div>
+						<div class="task-description-div">
+							Make Photo in this place. Some text, Some text. Some text Somtsldlamdma ksas dmaskmd 
+						</div>
+						<div style="z-index: 300;" class="task-meta-info-div">
+							<img src="/static/Logos/SomeLogo.png" alt="" class="task-poster-account-logo">
+							<div class="task-poster-name">kekus main</div>
+							<i class="material-icons" style="color: #797979; margin-left: 100px;">trending_up</i>
+							<div class="task-difficuilty-value">hard</div>
+						</div>
+					</div> -->
+				</div>
+			</td>
+			<td>
+				<div id="map"></div>
+			</td>
+		</tr>
+	</table>
+
+	<script src="/static/login/auth_handler.js?kek=4"></script>
+	<script src="/static/Pages/AddTask/add_task.js?kek=4"></script>
+	<script src="/static/Pages/ChooseTaskPage/LoadTasks.js?kek=5"></script>
+	<script>
+	{
+		let map = document.getElementById("map");
+		let mapToggle = document.getElementById('actions-panel-image-toggle-map');
+		let tasksTd = document.getElementById('main-panel-ava-tasks-td');
+		setTimeout(() => {
+			// map.style.display = 'none';
+		}, 100);
+		mapToggle.onclick = () => {
+			mapToggle.src = '/static/Logos/MapBlueIconQ2.png';
+			tasksTd.style.width = '300px';
+			setTimeout(() => {
+				map.style.display = 'block';
+				onBodyResize();
+			}, 1000);
+		};
+
+	}
+	</script>
+	<script>
+	var panorama;
+	var emap;
+	var main_map;
+	function initMap() {
+	  var astorPlace = {lat: 40.729884, lng: -73.990988};
+
+	  // Set up the map
+	  var map = new google.maps.Map(document.getElementById('map'), {
+	    center: astorPlace,
+	    zoom: 18,
+	    streetViewControl: false,
+	    mapTypeId: google.maps.MapTypeId.SATELLITE
+	  });
+	  emap = map;
+	  main_map = map;
+	  // Set up the markers on the map
+	  var cafeMarker = new google.maps.Marker({
+	      position: {lat: 40.730031, lng: -73.991428},
+	      map: map,
+	      icon: 'https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=cafe|FFFF00',
+	      title: 'Cafe'
+	  });
+
+	  var bankMarker = new google.maps.Marker({
+	      position: {lat: 40.729681, lng: -73.991138},
+	      map: map,
+	      icon: 'https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=dollar|FFFF00',
+	      title: 'Bank'
+	  });
+
+	  var busMarker = new google.maps.Marker({
+	      position: {lat: 40.729559, lng: -73.990741},
+	      map: map,
+	      icon: 'https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=bus|FFFF00',
+	      title: 'Bus Stop'
+	  });
+
+	  var infowindow = new google.maps.InfoWindow({
+	    content: 'kek'
+	  });
+
+	  cafeMarker.addListener('click', () => {
+	  	infowindow.open(map, cafeMarker);
+	  });
+
+	  // We get the map's default panorama and set up some defaults.
+	  // Note that we don't yet set it visible.
+	  panorama = map.getStreetView();
+	  panorama.setPosition(astorPlace);
+	  panorama.setPov(/** @type {google.maps.StreetViewPov} */({
+	    heading: 265,
+	    pitch: 0
+	  }));
+	}
+
+
+	function toggleStreetView() {
+	  var toggle = panorama.getVisible();
+	  if (toggle == false) {
+	    panorama.setVisible(true);
+	  } else {
+	    panorama.setVisible(false);
+	  }
+	}
+    </script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCc_-YOaGnCH8qiuq03ek6T221fVsgH5UE&callback=initMap"
+        async defer>
+    </script>
+    <script>
+    	
+		let onBodyResize = () => {
+			let width = window.innerWidth;
+			let height = window.innerHeight;
+			let map = document.getElementById('map');
+			map.style.width = (width - 300) + 'px';
+			map.style.height = (height - 51) + 'px';
+			console.log(screen.height);
+		}
+		onBodyResize();
+    	
+    </script>
+</body>
+</html>

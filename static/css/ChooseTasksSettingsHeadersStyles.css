@@ -1,0 +1,105 @@
+.tr-settings-header {
+	height: 40px;
+}
+
+.div-choose-filters {
+	// padding: 3px;
+	margin: 3px;
+	// background: #3498db;
+	background: white;
+	width: 30px;
+	cursor: default;
+}
+
+.choose-filter {
+	width: 33px;
+	text-align: center;
+	padding: 10px;
+	// color: #95a5a6;
+	transition: 0.2s;
+	position: relative;
+	top: 0px;
+	display: block;
+}
+
+.choose-filter-sign {
+	text-align: center;
+	// color: #95a5a6;
+	font-size: 12px;
+	font-family: 'Titillium Web', sans-serif;
+	position: absolute;
+	bottom: 2px;
+	left: 0px;
+	width: 100%;
+	transition: 0.2s;
+	opacity: 0;
+}
+
+.filters-table {
+	height: 50px;
+}
+
+.filters-table td {
+	position: relative;
+	// border-right: 1px solid #bdc3c7;
+	border-right: 1px solid white;
+	height: 34px;
+	color: #95a5a6;
+}
+
+.filters-table td:hover .choose-filter {
+	top: -8px;
+}
+
+.filters-table td:hover .choose-filter-sign {
+	bottom: 5px;
+	opacity: 1;
+}
+
+.filters-table td:after {
+	content: "";
+	position: absolute;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#000), to(transparent));
+	background-image: -webkit-linear-gradient(#000, transparent);
+	background-image: -moz-linear-gradient(#000, transparent);
+	background-image: -o-linear-gradient(#000, transparent);
+	background-image: linear-gradient(#FFF 0%, #bdc3c7 40%, #bdc3c7 60%, #FFF 100%);
+	top: 0px;
+	bottom: 0px;
+	width: 1px;
+	z-index: 500;
+}
+
+#geo-map-search-input {
+	font-size: 16px;
+	border: none;
+	outline: none;
+	width: 500px;
+	padding: 3px;
+	border-bottom: 1px solid #95a5a6;
+	// color: #95a5a6;
+	font-family: 'Cabin', sans-serif;
+	z-index: 10;
+}
+
+.div-geo-map-input {
+	// border-left: 1px solid #95a5a6;
+	// border-bottom: 1px solid #95a5a6;
+	position: relative;
+}
+
+.input-placeholder {
+	position: absolute;
+	color: #95a5a6;
+	font-family: 'Cabin', sans-serif;
+	font-size: 16px;
+	top: 14px;
+	left: 4px;
+	z-index: 4;
+}
+
+
+
+#login-button {
+	
+}

@@ -1,0 +1,151 @@
+table {
+	border-spacing: 0px;
+}
+td {
+	padding: 0px;
+}
+
+.ava-task-div {
+	background: white;
+	position: relative;
+	height: 150px;
+	z-index: 0;
+	border-bottom: 1px solid rgb(179, 179, 179);
+}
+
+.img-task-preview {
+	opacity: 0;
+	transition: 0.3s;
+	position: absolute;
+	z-index: -1;
+	width: 300px;
+}
+
+.img-task-preview:hover {
+	opacity: 1;
+}
+
+.task-meta-info-div {
+	font-family: "Graphik Web", Helvetica, Arial, serif, monospace;
+	/*background: rgba(43, 48, 59, 0.6);*/
+	/*background: rgba(190, 190, 190, 0.7);*/
+	position: absolute;
+	/*top: 150px;
+	width: 290px;
+	height: 47px;*/
+	bottom: 0px;
+
+	padding-top: 3px;
+	padding-left: 10px;
+	// color: rgb(230, 230, 230);
+	color: rgb(191, 196, 205);
+	color: #c0c5ce;
+	color: white;
+	/*text-shadow: 1px 1px black;*/
+	// color: white;
+	color: black;
+	font-size: 15px;
+	font-weight: 400;
+}
+
+.task-geopos-div {
+	font-family: "Graphik Web", Helvetica, Arial, serif, monospace;
+	padding: 10px;
+	font-size: 14px;
+	position: relative;
+	color: #95a5a6;
+}
+
+.task-claim-button {
+	display: inline;
+	position: relative;
+	top: -6px;
+	/*margin-left: 96px;*/
+	/*color: #3BA3D0;*/
+	/*font-size: 16px;*/
+	/*text-decoration: underline;*/
+	border: 1px solid white;
+	transition: 0.3s;
+	padding: 5px;
+	padding-right: 6px;
+	padding-left: 6px;
+
+	border-radius: 4px;
+	color: white;
+	font-family: 'Lato', sans-serif;
+	background: #2ecc71;
+	position: absolute;
+	right: 5px;
+	top: 10px;
+	opacity: 0;
+}
+
+.ava-task-div:hover .task-claim-button {
+	opacity: 1;
+}
+
+.task-claim-icon {
+	margin-left: 75px;
+	font-size: 20px;
+	position: relative;
+	top: -1px;
+}
+
+.task-claim-button:hover {
+	cursor: pointer;
+	border: 1px solid #797979;
+}
+
+.task-description-div {
+	font-family: "Graphik Web", Helvetica, Arial, sans-serif, monospace;
+	font-size: 15px;
+	padding-left: 10px;
+	padding-right: 3px;
+	color: #797979;
+}
+
+.task-poster-account-logo {
+	width: 30px;
+	height: 30px;
+	border-radius: 40px;
+	border: 1px solid white;
+	background: white;
+	/*background: black;*/
+}
+
+.task-poster-name {
+	display: inline;
+	position: relative;
+	top: -9px;
+}
+
+.task-difficuilty-value {
+	color: #797979;
+	display: inline;
+	position: relative;
+	top: -7px;
+}
+
+.task-meta-info-div:hover .img-task-preview {
+	opacity: 1;
+}
+
+.task-meta-info-user {
+
+}
+
+#map {
+	width: 600px;
+	height: 500px;
+}
+
+#map {
+	border-left: 2px solid rgb(179, 179, 179);
+}
+
+#main-panel-ava-tasks-td {
+	overflow-y: scroll;
+	// height: 700px;
+	table-layout: fixed;
+}
+
