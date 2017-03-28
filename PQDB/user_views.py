@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import re
 from PQDB.models import User, Task
+from Random.random_engine import random_id_no_coll, random_id
 # Create your views here.
 
 EMAIL_RE = re.compile(r'[a-zA-Z0-9_]+@[a-zA-Z0-9_]+.[a-zA-Z0-9_]+')
@@ -64,11 +65,32 @@ def validate_login_data(data):
 			'error': 'specify password'
 		}
 
+def get_request_sender(request):
+	data = request.COOKIES
+	if data.get('session_id', None) is not None:
+		if len(data['session_id']) < 10: return None
+		users = User.objects.filter(session_id=data['session_id'])
+		if not users: return None
+		return users[0]
+	return None
 
+def get_user_data(request):
+	user = get_request_sender(request)
+	if not user:
+		return JsonResponse({
+			'status': 'FAILED',
+			'error': 'No session'
+		})
+	return JsonResponse({
+		'status': 'OK',
+		'user': {
+			'name': user.name,
+		}
+	})
 
 def register(request):
 	data = request.GET if request.method == 'GET' else request.POST
-	print (request.scheme)
+	# print (request.scheme)
 	val = validate_register_data(data)
 	if val:
 		val['status'] = 'FAILED'
@@ -89,7 +111,10 @@ def register(request):
 		user = User(
 			name=data['username'],
 			password=data['password'],
-			email=data['email']
+			email=data['email'],
+			eid=random_id_no_coll(User.objects),
+			session_id="-1",
+			session_expire="-1"
 		)
 		user.save()
 		return JsonResponse({
@@ -117,6 +142,26 @@ def login(request):
 				'error': 'Incorrect password',
 				'key': 'password'
 			})
-		return JsonResponse({
+
+		users[0].session_id = random_id()
+		resp = JsonResponse({
 			'status': 'OK',
 		})
+
+		users[0].save()
+
+		resp.set_cookie('session_id', users[0].session_id)
+		return resp
+
+def all_users(request):
+	users_json = []
+	for user in User.objects.all():
+		users_json.append({
+			'name': user.name,
+			'session_id': user.session_id
+		})
+
+	return JsonResponse({
+		'status': 'OK',
+		'users': users_json
+	})

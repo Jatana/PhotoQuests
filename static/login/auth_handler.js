@@ -16,6 +16,13 @@ LoginManager = new (function() {
 		$('#screen-darker')[0].style.zIndex = '600';
 		$('#screen-darker')[0].style.opacity = 0.8;
 		$('#div-register-form')[0].style.display = 'block';
+
+
+		$('#screen-darker').on('click', () => {
+			$('#screen-darker')[0].style.zIndex = '-10';
+			$('#screen-darker')[0].style.display = 'none';
+			$('#div-register-form')[0].style.display = 'none';
+		})
 	})
 
 	$('#login-button').on('click', () => {
@@ -23,6 +30,12 @@ LoginManager = new (function() {
 		$('#screen-darker')[0].style.zIndex = '600';
 		$('#screen-darker')[0].style.opacity = 0.8;
 		$('#div-login-form')[0].style.display = 'block';
+
+		$('#screen-darker').on('click', () => {
+			$('#screen-darker')[0].style.zIndex = '-10';
+			$('#screen-darker')[0].style.display = 'none';
+			$('#div-login-form')[0].style.display = 'none';
+		})
 	})
 
 	$('#action-register-button').on('click', () => {
@@ -81,4 +94,14 @@ LoginManager = new (function() {
 			}
 		});
 	});
+
+	if (Cookies.get('session_id')) {
+		$.ajax({
+			url: '/cli/get_user_data/'
+		}).done((resp) => {
+			if (resp.status == 'OK') {
+				this.login(resp.user.name, "");
+			}
+		})
+	}
 })

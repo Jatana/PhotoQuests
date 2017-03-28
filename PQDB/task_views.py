@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import re
 from PQDB.models import Task, User
+from Random.random_engine import random_id_no_coll
 
 # Create your views here.
 
@@ -57,7 +58,8 @@ def create_task(request):
 		difficuilty=data['difficuilty'],
 		description=data['description'],
 		location=data['location'],
-		poster=User.objects.filter(name=data['poster_name'])[0]
+		poster=User.objects.filter(name=data['poster_name'])[0],
+
 	)
 	task.save()
 	return JsonResponse({
@@ -72,7 +74,9 @@ def get_tasks(request):
 			'description': task.description,
 			'difficuilty': task.difficuilty,
 			'location': task.location,
-			'poster_name': task.poster.name
+			'poster_name': task.poster.name,
+			'id': task.eid,
+			'eid': random_id_no_coll(Task.objects)
 		})
 
 	resp = {

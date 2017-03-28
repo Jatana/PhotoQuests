@@ -6,10 +6,11 @@
 	<link rel="stylesheet" href="/static/css/MainStyles.css?always_update=true">
 	<link rel="stylesheet" href="/static/css/HeaderStyles.css?always_update=true">
 	<link rel="stylesheet" href="/static/css/LoginStyles.css?always_update7=true">
-	<link rel="stylesheet" href="/static/css/ChooseTasksStyles.css?always_update2=true">
-	<link rel="stylesheet" href="/static/css/ChooseTasksSettingsHeadersStyles.css?always_update123=true">
+	<link rel="stylesheet" href="/static/css/ChooseTasksStyles.css?always_update11=true">
+	<link rel="stylesheet" href="/static/css/ChooseTasksSettingsHeadersStyles.css?always_update125=true">
 	<link rel="stylesheet" href="/static/css/UIStyles.css?always_update=true">
 	<link rel="stylesheet" href="/static/css/AccountPanelStyles.css?always_update=true">
+	<link rel="stylesheet" href="/static/css/SpinnerStyles.css?always_update=true">
 	<link rel="stylesheet" type="text/css"
 		  href="https://fonts.googleapis.com/css?family=Raleway:400i">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -19,6 +20,7 @@
 </head>
 <body style="position: relative;">
 	<script src="/static/jquery-3.1.1.min.js"></script>
+	<script src="/static/jquery-cookie.js"></script>
 	<div id="screen-darker">
 	</div>
 	<div id="div-register-form">
@@ -74,6 +76,43 @@
 		<div id="login-error"></div>
 		<div id="action-login-button">log in</div>
 	</div>
+
+	<div id="task-big-preview" style="opacity: 0;z-index: -100;">
+		<div class="ava-task-div-bigger ava-task-div">
+			<div class="task-geopos-div">
+				<div class="geo-pos-text" style="display: inline; position: relative; top: -6px;">Keks task keks
+				</div>
+				<div class="task-meta-panel" style="opacity: 1;">
+					<div class="task-bookmark material-icons" style="font-size: 30px;">bookmark_border
+					</div>
+					<div class="task-claim-button" id="task-preview-submit-button">
+						<div class="spinner" id="preview-spinner" style="display: none;">
+							<div class="double-bounce1"></div>
+							<div class="double-bounce2"></div>
+						</div>
+						submit photo
+						<input type="file" id="task-preview-submit-button-shadow">
+					</div>
+					<i class="task-preview-close-button material-icons" id="task-preview-close-button">close</i>
+				</div>
+			</div>
+			<div class="task-description-div">ASDASDASDASD</div>
+			<div class="task-user-submissions">
+				<div class="task-user-submissions-props" id="task-user-submissions-props">Your submissions (0)</div>
+				<div id="task-user-submissions-panel">
+
+				</div>
+			</div>
+			<div class="task-meta-info-div-bigger task-meta-info-div" style="z-index: 300;">
+				<img class="task-poster-account-logo" src="/static/Logos/SomeLogo.png">
+				<div class="task-poster-name">Admin</div>
+				<div class="task-difficuilty-panel">
+					<i class="material-icons task-difficuilty-icon">trending_up</i>
+					<div class="task-difficuilty-value">Easy</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<table>
 		<tr class="tr-settings-header">
 			<td class="div-choose-filters" style="border-bottom: 1px solid #bdc3c7">
@@ -83,9 +122,9 @@
 							<i class="material-icons choose-filter">near_me</i>
 							<div class="choose-filter-sign">near me</div>
 						</td>
-						<td>
-							<i class="material-icons choose-filter">trending_up</i>
-							<div class="choose-filter-sign">easy</div>
+						<td id="td-filter-difficuilty">
+							<i class="material-icons choose-filter" id="choose-filter-difficuilty-icon">trending_up</i>
+							<div class="choose-filter-sign" id="choose-filter-sign-difficuilty">difficuilty</div>
 						</td>
 						<td>
 							<i class="material-icons choose-filter">date_range</i>
@@ -95,9 +134,13 @@
 							<i class="material-icons choose-filter">subject</i>
 							<div class="choose-filter-sign">subject</div>
 						</td>
-						<td>
+						<!-- <td>
 							<i class="material-icons choose-filter">account_circle</i>
 							<div class="choose-filter-sign">author</div>
+						</td> -->
+						<td id="td-filter-bookmark">
+							<i class="material-icons choose-filter">bookmark_border</i>
+							<div class="choose-filter-sign">marks</div>
 						</td>
 					</tr>
 				</table>
@@ -163,24 +206,13 @@
 			</td>
 		</tr>
 		<tr style="vertical-align: top">
-			<td style="background: rgb(240, 240, 240);z-index:-3;" id="main-panel-ava-tasks-td">
+			<td style="background: rgb(240, 240, 240);z-index: 3;position: relative;" id="main-panel-ava-tasks-td">
+				<div class="filter-settings-panel" id="filter-settings-panel-difficuilty">
+					<div class="difficuilty-value">easy</div>
+					<div class="difficuilty-value">medium</div>
+					<div class="difficuilty-value">hard</div>
+				</div>
 				<div style="overflow-y: scroll" id="task-base">
-				<!-- 	<div class="ava-task-div">
-						<div class="task-geopos-div">
-							<i class="material-icons">place</i>
-							<div style="display: inline; position: relative;top: -6px">London 23</div>
-							<div class="task-claim-button">claim task</div>
-						</div>
-						<div class="task-description-div">
-							Make Photo in this place. Some text, Some text. Some text Somtsldlamdma ksas dmaskmd 
-						</div>
-						<div style="z-index: 300;" class="task-meta-info-div">
-							<img src="/static/Logos/SomeLogo.png" alt="" class="task-poster-account-logo">
-							<div class="task-poster-name">kekus main</div>
-							<i class="material-icons" style="color: #797979; margin-left: 100px;">trending_up</i>
-							<div class="task-difficuilty-value">hard</div>
-						</div>
-					</div> -->
 				</div>
 			</td>
 			<td>
@@ -189,9 +221,11 @@
 		</tr>
 	</table>
 
-	<script src="/static/login/auth_handler.js?kek=4"></script>
+	<script src="/static/login/auth_handler.js?kek=5"></script>
+	<script src="/static/Pages/ChooseTaskPage/PreviewManager.js?kek=8"></script>
 	<script src="/static/Pages/AddTask/add_task.js?kek=4"></script>
-	<script src="/static/Pages/ChooseTaskPage/LoadTasks.js?kek=5"></script>
+	<script src="/static/Pages/ChooseTaskPage/LoadTasks.js?kek=15"></script>
+	<script src="/static/Pages/ChooseTaskPage/SettingsHeaderHandler.js?kek=6"></script>
 	<script>
 	{
 		let map = document.getElementById("map");
@@ -223,39 +257,39 @@
 	    center: astorPlace,
 	    zoom: 18,
 	    streetViewControl: false,
-	    mapTypeId: google.maps.MapTypeId.SATELLITE
+	    mapTypeId: google.maps.MapTypeId.HYBRID
 	  });
 	  emap = map;
 	  main_map = map;
 	  // Set up the markers on the map
-	  var cafeMarker = new google.maps.Marker({
-	      position: {lat: 40.730031, lng: -73.991428},
-	      map: map,
-	      icon: 'https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=cafe|FFFF00',
-	      title: 'Cafe'
-	  });
+	  // var cafeMarker = new google.maps.Marker({
+	  //     position: {lat: 40.730031, lng: -73.991428},
+	  //     map: map,
+	  //     icon: 'https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=cafe|FFFF00',
+	  //     title: 'Cafe'
+	  // });
 
-	  var bankMarker = new google.maps.Marker({
-	      position: {lat: 40.729681, lng: -73.991138},
-	      map: map,
-	      icon: 'https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=dollar|FFFF00',
-	      title: 'Bank'
-	  });
+	  // var bankMarker = new google.maps.Marker({
+	  //     position: {lat: 40.729681, lng: -73.991138},
+	  //     map: map,
+	  //     icon: 'https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=dollar|FFFF00',
+	  //     title: 'Bank'
+	  // });
 
-	  var busMarker = new google.maps.Marker({
-	      position: {lat: 40.729559, lng: -73.990741},
-	      map: map,
-	      icon: 'https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=bus|FFFF00',
-	      title: 'Bus Stop'
-	  });
+	  // var busMarker = new google.maps.Marker({
+	  //     position: {lat: 40.729559, lng: -73.990741},
+	  //     map: map,
+	  //     icon: 'https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=bus|FFFF00',
+	  //     title: 'Bus Stop'
+	  // });
 
 	  var infowindow = new google.maps.InfoWindow({
 	    content: 'kek'
 	  });
 
-	  cafeMarker.addListener('click', () => {
-	  	infowindow.open(map, cafeMarker);
-	  });
+	  // cafeMarker.addListener('click', () => {
+	  // 	infowindow.open(map, cafeMarker);
+	  // });
 
 	  // We get the map's default panorama and set up some defaults.
 	  // Note that we don't yet set it visible.

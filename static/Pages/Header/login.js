@@ -20,7 +20,6 @@
 		}
 		loginPanel.style.opacity = enable ? '1' : '0';
 		if (enable) inputUsername.focus();
-		console.log('fuck');
 	};
 
 

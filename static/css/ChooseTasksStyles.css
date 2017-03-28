@@ -13,6 +13,10 @@ td {
 	border-bottom: 1px solid rgb(179, 179, 179);
 }
 
+.ava-task-div-bigger {
+	height: 100%;
+}
+
 .img-task-preview {
 	opacity: 0;
 	transition: 0.3s;
@@ -26,17 +30,18 @@ td {
 }
 
 .task-meta-info-div {
-	font-family: "Graphik Web", Helvetica, Arial, serif, monospace;
+	// font-family: "Graphik Web", Helvetica, Arial, serif, monospace;
+	font-family: 'Cabin', sans-serif;
 	/*background: rgba(43, 48, 59, 0.6);*/
-	/*background: rgba(190, 190, 190, 0.7);*/
+	background: #ecf0f1;
 	position: absolute;
 	/*top: 150px;
 	width: 290px;
 	height: 47px;*/
 	bottom: 0px;
+	width: 100%;
 
 	padding-top: 3px;
-	padding-left: 10px;
 	// color: rgb(230, 230, 230);
 	color: rgb(191, 196, 205);
 	color: #c0c5ce;
@@ -48,18 +53,49 @@ td {
 	font-weight: 400;
 }
 
+.task-preview-close-button {
+	font-size: 30px;
+	margin-left: 1px;
+	position: relative;
+	top: -4px;
+}
+
+.task-preview-close-button:hover {
+	color: #e74c3c;
+	cursor: pointer;
+}
+
+.task-meta-info-div-bigger {
+	width: 100%;
+}
+
 .task-geopos-div {
-	font-family: "Graphik Web", Helvetica, Arial, serif, monospace;
-	padding: 10px;
+	// font-family: "Graphik Web", Helvetica, Arial, serif, monospace;
+	font-family: "Cabin", sans-serif;
+	// background: #2D373F;
+	// background: #A3B0B7;
+	padding: 20px;
+	padding-top: 16px;
+	padding-bottom: 5px;
 	font-size: 14px;
+	// padding: 30px;
 	position: relative;
 	color: #95a5a6;
 }
 
+.geo-pos-text {
+	font-size: 16px;
+	color: #3498db;
+}
+
+.geo-pos-text:hover {
+	cursor: normal;
+}
+
 .task-claim-button {
 	display: inline;
-	position: relative;
-	top: -6px;
+	// position: relative;
+	// top: -6px;
 	/*margin-left: 96px;*/
 	/*color: #3BA3D0;*/
 	/*font-size: 16px;*/
@@ -74,10 +110,12 @@ td {
 	color: white;
 	font-family: 'Lato', sans-serif;
 	background: #2ecc71;
-	position: absolute;
-	right: 5px;
-	top: 10px;
-	opacity: 0;
+	position: relative;;
+	top: -9px;
+	// position: absolute;
+	// right: 5px;
+	// top: 10px;
+	// opacity: 0;
 }
 
 .ava-task-div:hover .task-claim-button {
@@ -91,20 +129,49 @@ td {
 	top: -1px;
 }
 
+.task-bookmark {
+	display: inline;
+	position: relative;
+	// top: 6px;
+	color: #3498db;
+	font-size: 30px;
+	content: 'bookmark_border';
+}
+
+
+.task-bookmark:hover {
+	cursor: pointer;
+}
+
 .task-claim-button:hover {
 	cursor: pointer;
 	border: 1px solid #797979;
 }
 
+.task-meta-panel {
+	position: absolute;
+	top: 3px;
+	right: 3px;
+	opacity: 0;
+	transition: 0.3s;
+	vertical-align: middle;
+}
+
+.ava-task-div:hover .task-meta-panel {
+	opacity: 1;
+}
+
 .task-description-div {
-	font-family: "Graphik Web", Helvetica, Arial, sans-serif, monospace;
+	// font-family: "Graphik Web", Helvetica, Arial, sans-serif, monospace;
+	font-family: "Cabin", sans-serif;
 	font-size: 15px;
-	padding-left: 10px;
+	padding-left: 20px;
 	padding-right: 3px;
 	color: #797979;
 }
 
 .task-poster-account-logo {
+	margin-left: 5px;
 	width: 30px;
 	height: 30px;
 	border-radius: 40px;
@@ -114,16 +181,34 @@ td {
 }
 
 .task-poster-name {
+	font-family: 'Cabin', sans-serif;
+	color: #bdc3c7;
 	display: inline;
 	position: relative;
+	margin-left: 5px;
 	top: -9px;
 }
 
+.task-difficuilty-panel {
+	display: block;
+	position: absolute;
+	right: 10px;
+	top: 0px;
+	color: #bdc3c7;
+}
+
 .task-difficuilty-value {
-	color: #797979;
+	// color: #797979;
 	display: inline;
-	position: relative;
+	// position: absolute;
 	top: -7px;
+	right: 0px;
+}
+
+.task-difficuilty-icon {
+	position: relative;
+	top: 7px;
+	margin-right: 5px;
 }
 
 .task-meta-info-div:hover .img-task-preview {
@@ -149,3 +234,66 @@ td {
 	table-layout: fixed;
 }
 
+#task-base {
+	position: relative;
+}
+
+#task-big-preview {
+	position: absolute;
+	top: 100px;
+	height: 500px;
+	left: 200px;
+	width: 700px;
+	z-index: 900;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	background: white;
+	transition: 0.1s;
+}
+
+#task-preview-submit-button {
+	position: relative;
+}
+
+#task-preview-submit-button-shadow {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	opacity: 0;
+}
+
+.task-user-submissions {
+	position: absolute;
+	bottom: 40px;
+	left: 0px;
+	right: 0px;
+}
+
+.task-user-submissions-props {
+	font-family: 'Cabin', sans-serif;
+	color: #3498db;
+	margin-left: 20px;
+	margin-right: 20px;
+	width: calc(100% - 40px);
+	border-bottom: 1px solid #3498db;
+}
+
+#task-user-submissions-panel {
+	overflow-x: scroll;
+	white-space: nowrap;
+}
+
+.user-submission-img {
+	// opacity: 1;
+	animation: image-add-animation 1s ease-in-out;
+}
+
+@keyframes image-add-animation {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

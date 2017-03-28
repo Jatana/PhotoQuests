@@ -21,6 +21,8 @@ from PhotoQuests.Pages.Register import Handler as RegisterPageHandler
 from PhotoQuests.Pages.AddTask import Handler as AddTaskPageHandler
 from PQDB import user_views as userdb
 from PQDB import task_views as taskdb
+from PQDB import submit_views as submitdb
+from PQDB import image_views as imagedb
 
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
@@ -30,6 +32,16 @@ urlpatterns = [
     url(r'^cli/register/', userdb.register),
     url(r'^cli/add_task/', taskdb.create_task),
     url(r'^cli/get_tasks/', taskdb.get_tasks),
+    url(r'^cli/add_submission/', submitdb.create_submit),
+    url(r'^cli/get_submissions/', submitdb.get_submissions),
+    url(r'^cli/get_submission/', submitdb.get_submission),
+    url(r'^cli/clear_submissions/', submitdb.clear_submissions),
+    url(r'^cli/all_submissions/', submitdb.get_all_submissions),
+    url(r'^cli/all_images/', imagedb.all_images),
+    url(r'^cli/get_image/', imagedb.get_image),
+    url(r'^cli/clear_images/', imagedb.clear_images),
     url(r'^cli/login/', userdb.login),
+    url(r'^cli/get_user_data/', userdb.get_user_data),
+    url(r'^cli/all_users/', userdb.all_users),
     url(r'^', MainPageHandler.load_page),
 ]

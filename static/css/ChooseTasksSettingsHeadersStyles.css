@@ -103,3 +103,37 @@
 #login-button {
 	
 }
+
+.filter-settings-panel {
+	position: absolute;
+	z-index: 800;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	background: white;
+	padding: 3px;
+	font-family: 'Cabin', sans-serif;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+#filter-settings-panel-difficuilty {
+	font-size: 14px;
+	color: #3498db;
+	text-align: center;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	opacity: 0;
+	transition: 0.3s;
+}
+
+#filter-settings-panel-difficuilty div:hover {
+	cursor: pointer;
+}
+
+.difficuilty-value {
+	display: inline;
+	margin-left: 20px;
+	margin-right: 20px;
+	// margin-top: 10px;
+	// margin-bottom: 10px;
+}
