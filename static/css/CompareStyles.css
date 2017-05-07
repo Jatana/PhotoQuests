@@ -1,0 +1,43 @@
+#div-compare-panel {
+	position: absolute;
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	z-index: 1000;
+	opacity: 0.9;
+	// background: black;
+}
+
+#div-compare-panel-close {
+	padding: 5px;
+	color: white;
+	font-size: 50px;
+	transition: 0.3s;
+	opacity: 0.9;
+}
+
+#div-compare-panel-close:hover {
+	cursor: pointer;
+	opacity: 1;
+}
+
+.compare-images-table {
+	width: 100%;
+}
+
+.compare-images-table td {
+	text-align: center;
+}
+
+#compare-task-description {
+	font-family: 'Cabin', sans-serif;
+	text-align: center;
+	color: white;
+	margin-left: 110px;
+	margin-right: 110px;
+}
+
+.table-compare-panel {
+	width: 100%;
+}

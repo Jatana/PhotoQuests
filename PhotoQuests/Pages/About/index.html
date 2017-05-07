@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Kekus</title>
+	{{static_list |safe}}
+</head>
+<body style="position: relative;">
+	<script src="/static/jquery-3.2.0.min.js"></script>
+	<script src="/static/jquery-cookie.js"></script>
+	<div id="screen-darker">
+	</div>
+	<div id="div-register-form">
+		<table class="table-login-form">
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">account_circle</i>		
+				</td>
+				<td class="td-pre-input">
+					<input type="text" id="register-input-username" class="login-input" placeholder="Username">
+				</td>
+			</tr>
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">lock</i>	
+				</td>
+				<td class="td-pre-input">
+					<input type="password" id="register-input-password" class="login-input" placeholder="Password">
+				</td>
+			</tr>
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">email</i>	
+				</td>
+				<td class="td-pre-input">
+					<input type="text" id="register-input-email" class="login-input" placeholder="email">
+				</td>
+			</tr>
+		</table>
+		<div id="register-error"></div>
+		<div id="action-register-button">register</div>
+	</div>
+
+	<div id="div-login-form">
+		<table class="table-login-form">
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">account_circle</i>		
+				</td>
+				<td class="td-pre-input">
+					<input type="text" id="login-input-username" class="login-input" placeholder="Username">
+				</td>
+			</tr>
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">lock</i>	
+				</td>
+				<td class="td-pre-input">
+					<input type="password" id="login-input-password" class="login-input" placeholder="Password">
+				</td>
+			</tr>
+		</table>
+		<div id="login-error"></div>
+		<div id="action-login-button">log in</div>
+	</div>
+
+
+	{{header |safe}}
+
+	<div class="about-description">
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta nisi voluptas aliquid excepturi exercitationem assumenda, accusantium pariatur, ducimus. Omnis similique nesciunt odio odit voluptas aperiam, beatae delectus esse, dolore laboriosam.
+	</div>
+
+	<script src="/static/login/auth_handler.js?kek=5"></script>
+	<script src="/static/Pages/ChooseTaskPage/PreviewManager.js?kek=9"></script>
+	<script src="/static/Pages/AddTask/add_task.js?kek=4"></script>
+	<script src="/static/Pages/ChooseTaskPage/LoadTasks.js?kek=16"></script>
+	<script src="/static/Pages/ChooseTaskPage/SettingsHeaderHandler.js?kek=6"></script>
+	<script src="/static/Pages/Compare/compare.js?kek=8"></script>
+	<script src="/static/Pages/ChooseTaskPage/map_config.js"></script>
+	<script src="/static/Pages/Header/header.js"></script>
+
+	<script>
+		$('#header-tab-about')[0].className = 'header-tab-value header-tab-value-focused';
+	</script>
+</body>
+</html>

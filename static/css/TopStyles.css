@@ -1,0 +1,47 @@
+#top-table {
+	width: calc(100% - 200px);
+	font-family: 'Raleway', sans-serif;
+	margin: 80px;
+	margin-top: 0px;
+	padding: 10px;
+	background: white;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
+}
+
+.top-table-td-key {
+	font-family: "Raleway", sans-serif;
+	font-weight: 400;
+	border-bottom: 1px solid rgb(230, 230, 230);
+	padding: 5px;
+	padding-bottom: 10px;
+}
+
+.top-table-td-value {
+	border-bottom: 1px solid rgb(230, 230, 230);
+	padding: 5px;
+	font-size: 15px;
+}
+
+.top-table-td-value-login {
+	color: #6F92BA;
+	transition: 0.3s;
+	// border-bottom: 1px solid white;
+}
+
+.top-table-td-value-login:hover {
+	cursor: pointer;
+	// border-bottom: 1px solid black;
+}
+
+body {
+	background: rgb(240, 240, 240);
+}
+
+.top-sign {
+	font-family: "Raleway", sans-serif;
+	margin-left: 80px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 30px;
+	color: #7f8c8d;
+}

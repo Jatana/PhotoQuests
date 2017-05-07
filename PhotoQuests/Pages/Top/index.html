@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Kekus</title>
+	{{static_list |safe}}
+</head>
+<body style="position: relative;">
+	<script src="/static/Maps/GoogleMap.js"></script>
+	<script src="/static/jquery-3.2.0.min.js"></script>
+	<script src="/static/jquery-cookie.js"></script>
+	<div id="screen-darker">
+	</div>
+	<div id="div-register-form">
+		<table class="table-login-form">
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">account_circle</i>		
+				</td>
+				<td class="td-pre-input">
+					<input type="text" id="register-input-username" class="login-input" placeholder="Username">
+				</td>
+			</tr>
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">lock</i>	
+				</td>
+				<td class="td-pre-input">
+					<input type="password" id="register-input-password" class="login-input" placeholder="Password">
+				</td>
+			</tr>
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">email</i>	
+				</td>
+				<td class="td-pre-input">
+					<input type="text" id="register-input-email" class="login-input" placeholder="email">
+				</td>
+			</tr>
+		</table>
+		<div id="register-error"></div>
+		<div id="action-register-button">register</div>
+	</div>
+
+	<div id="div-login-form">
+		<table class="table-login-form">
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">account_circle</i>		
+				</td>
+				<td class="td-pre-input">
+					<input type="text" id="login-input-username" class="login-input" placeholder="Username">
+				</td>
+			</tr>
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">lock</i>	
+				</td>
+				<td class="td-pre-input">
+					<input type="password" id="login-input-password" class="login-input" placeholder="Password">
+				</td>
+			</tr>
+		</table>
+		<div id="login-error"></div>
+		<div id="action-login-button">log in</div>
+	</div>
+	{{header |safe}}
+	<div class="top-sign">
+		Top Users
+	</div>
+	<div class="div-top-table">
+		<table id="top-table">
+			<tr>
+				<td class="top-table-td-key"></td>
+				<td class="top-table-td-key">LOGIN</td>
+				<td class="top-table-td-key">COUNTRY</td>
+				<td class="top-table-td-key">RATING</td>
+				<td class="top-table-td-key">TASK SUBMITS</td>
+			</tr>
+		</table>
+	</div>
+	
+	<script>
+		$.ajax({
+			url: '/cli/get_users_ratings/'
+		}).done((resp) => {
+			let rank = 1;
+			for (let user of resp.users) {
+				let tr = document.createElement('tr')
+				let tdName = document.createElement('td');
+				let tdRating = document.createElement('td');
+				let tdCountry = document.createElement('td');
+				let tdTaskSolved = document.createElement('td');
+				let tdRank = document.createElement('td');
+				tdName.innerHTML = user.name;
+				tdRating.innerHTML = user.rating;
+				tdCountry.innerHTML = 'Russia';
+				tdName.className = 'top-table-td-value top-table-td-value-login';
+				tdRating.className = 'top-table-td-value';
+				tdRank.className = 'top-table-td-value';
+				tdCountry.className = 'top-table-td-value';
+				tdTaskSolved.className = 'top-table-td-value';
+				tdRank.innerHTML = rank;
+				tr.appendChild(tdRank);
+				tr.appendChild(tdName);
+				tr.appendChild(tdCountry);
+				tr.appendChild(tdRating);
+				tr.appendChild(tdTaskSolved);
+				$('#top-table')[0].appendChild(tr);
+				rank++;
+			}
+		})
+	</script>
+
+	<script src="/static/login/auth_handler.js?kek=5"></script>
+	<script src="/static/Pages/ChooseTaskPage/PreviewManager.js?kek=9"></script>
+	<script src="/static/Pages/AddTask/add_task.js?kek=4"></script>
+	<script src="/static/Pages/ChooseTaskPage/LoadTasks.js?kek=16"></script>
+	<script src="/static/Pages/ChooseTaskPage/SettingsHeaderHandler.js?kek=6"></script>
+	<script src="/static/Pages/Compare/compare.js?kek=8"></script>
+	<script src="/static/Pages/Header/header.js"></script>
+
+	<script>
+		$('#header-tab-top')[0].className = 'header-tab-value header-tab-value-focused';
+	</script>
+</body>
+</html>

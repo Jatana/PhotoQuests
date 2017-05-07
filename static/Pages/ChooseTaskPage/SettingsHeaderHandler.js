@@ -1,3 +1,5 @@
+var taskBaseWidth = 400;
+
 {
 
 	let closeTimeout;
@@ -50,6 +52,30 @@
 			$('#td-filter-bookmark')[0].style.color = '#3498db';
 		} else {
 			$('#td-filter-bookmark')[0].style.color = '#95a5a6';
+		}
+	})
+
+	let mapEnabled = false;
+	$('#td-filter-map').on('click', () => {
+		mapEnabled = !mapEnabled;
+		if (mapEnabled) {
+			main_map.show();
+			main_map.redraw();
+			$('#td-filter-map')[0].style.color = '#3498db';
+			taskBaseWidth = 0;
+			for (let elem of document.getElementsByClassName('ava-task-div')) {
+				elem.style.width = taskBaseWidth + 'px';
+			}
+			// $('#task-base')[0].style.width = '401px';
+		} else {
+			// main_map.hide();
+			$('#td-filter-map')[0].style.color = '#95a5a6';
+			taskBaseWidth = 400;
+			for (let elem of document.getElementsByClassName('ava-task-div')) {
+				elem.style.width = taskBaseWidth + 'px';
+			}	
+			// $('#task-base')[0].style.width = '701px';
+			console.log('set')
 		}
 	})
 }

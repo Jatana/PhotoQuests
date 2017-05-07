@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Kekus</title>
+	{{static_list |safe}}
+	<link rel="stylesheet" href="/static/css/ProfileStyles.css?q=336">
+</head>
+<body style="position: relative;">
+	{{static_jquery |safe}}
+	{% csrf_token %}
+	<script>
+		var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+		console.log(csrftoken);
+		function csrfSafeMethod(method) {
+			// these HTTP methods do not require CSRF protection
+			return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+		}
+		$.ajaxSetup({
+			beforeSend: function(xhr, settings) {
+				if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+					xhr.setRequestHeader("X-CSRFToken", csrftoken);
+				}
+			}
+		});
+	</script>
+	{{screen_darker |safe}}
+	<div id="div-register-form">
+		<table class="table-login-form">
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">account_circle</i>		
+				</td>
+				<td class="td-pre-input">
+					<input type="text" id="register-input-username" class="login-input" placeholder="Username">
+				</td>
+			</tr>
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">lock</i>	
+				</td>
+				<td class="td-pre-input">
+					<input type="password" id="register-input-password" class="login-input" placeholder="Password">
+				</td>
+			</tr>
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">email</i>	
+				</td>
+				<td class="td-pre-input">
+					<input type="text" id="register-input-email" class="login-input" placeholder="email">
+				</td>
+			</tr>
+		</table>
+		<div id="register-error"></div>
+		<div id="action-register-button">register</div>
+	</div>
+
+	<div id="div-login-form">
+		<table class="table-login-form">
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">account_circle</i>		
+				</td>
+				<td class="td-pre-input">
+					<input type="text" id="login-input-username" class="login-input" placeholder="Username">
+				</td>
+			</tr>
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">lock</i>	
+				</td>
+				<td class="td-pre-input">
+					<input type="password" id="login-input-password" class="login-input" placeholder="Password">
+				</td>
+			</tr>
+		</table>
+		<div id="login-error"></div>
+		<div id="action-login-button">log in</div>
+	</div>
+
+	{{header |safe}}
+	<div class="pre-corner-div-profile-info">
+		<div class="pre-div-profile-info">
+			<div class="pre-up-profile-panel">
+				<table>
+					<tr>
+						<td class="td-profile-image">
+							<img src="" class="img-profile-img" id="img-profile" height="110">
+							<i class="td-profile-image-edit material-icons">photo_camera</i>
+							<input type="file" id="profile-photo-button">
+						</td>
+						<td class="td-profile-meta">
+							<table>
+								<tr>
+									<td>
+										<div class="div-profile-login" id="div-profile-login">
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td class="div-profile-names">
+										<div class="div-profile-name">Name</div>
+										<div class="div-profile-surname">Surname</div>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<div class="div-profile-rating">
+											Rating - 3500
+										</div>
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div id="user-submissions-panel">
+				
+			</div>
+		</div>
+	</div>
+	<script src="/static/nice_image.js?zero=zero"></script>
+	<script src="/static/login/auth_handler.js?kek=1"></script>
+	<script src="/static/Pages/Profile/Profile.js?iek=6"></script>
+	<script src="/static/Pages/Header/header.js"></script>
+</body>
+</html>

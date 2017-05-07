@@ -6,11 +6,20 @@ td {
 }
 
 .ava-task-div {
+	width: 400px;
+	// background: rgb(250, 250, 250);
 	background: white;
 	position: relative;
 	height: 150px;
 	z-index: 0;
+	border-left: 1px solid #ecf0f1;
 	border-bottom: 1px solid rgb(179, 179, 179);
+	// border-right: 1px solid rgb(179, 179, 179);
+	transition: 0.3s;
+}
+
+.ava-task-div:hover {
+	border-left: 1px solid #3498db;
 }
 
 .ava-task-div-bigger {
@@ -232,6 +241,7 @@ td {
 	overflow-y: scroll;
 	// height: 700px;
 	table-layout: fixed;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
 }
 
 #task-base {
@@ -296,4 +306,30 @@ td {
 	100% {
 		opacity: 1;
 	}
+}
+
+#td-pre-map {
+	width: 100%;
+}
+
+#div-pre-map {
+	margin-left: 10px;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
+}
+
+.table-filters-table {
+	width: calc(100% - 60px);
+	background: rgb(255, 255, 255);
+	margin: 30px;
+	margin-top: 20px;
+	margin-bottom: 15px;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
+}
+
+.table-tasks-table {
+	width: 100%;
+	width: calc(100% - 60px);
+	margin: 30px;
+	margin-top: 0px;
+	// box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
 }

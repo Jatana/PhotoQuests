@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 import re
-from PQDB.models import User, Task
+from PQDB.models import User, Task, Image
+from PQDB.image_views import add_image
 from Random.random_engine import random_id_no_coll, random_id
 # Create your views here.
 
@@ -84,7 +85,8 @@ def get_user_data(request):
 	return JsonResponse({
 		'status': 'OK',
 		'user': {
-			'name': user.name,
+			'name': user.login,
+			'profile_image_id': user.profile_image_id
 		}
 	})
 
@@ -96,7 +98,7 @@ def register(request):
 		val['status'] = 'FAILED'
 		return JsonResponse(val)
 	else:
-		if User.objects.filter(name=data['username']):
+		if User.objects.filter(login=data['username']):
 			return JsonResponse({
 				'status': 'FAILED',
 				'error': 'User with this username already exist'
@@ -109,7 +111,7 @@ def register(request):
 			})
 
 		user = User(
-			name=data['username'],
+			login=data['username'],
 			password=data['password'],
 			email=data['email'],
 			eid=random_id_no_coll(User.objects),
@@ -129,7 +131,7 @@ def login(request):
 		val['status'] = 'FAILED'
 		return JsonResponse(val)
 	else:
-		users = User.objects.filter(name=data['username'])
+		users = User.objects.filter(login=data['username'])
 		if not users:
 			return JsonResponse({
 				'status': 'FAILED',
@@ -153,11 +155,43 @@ def login(request):
 		resp.set_cookie('session_id', users[0].session_id)
 		return resp
 
+def update_profile_image(request):
+	user = get_request_sender(request)
+	if user is None:
+		return JsonResponse({
+			'status': 'FAILED',
+			'error': 'auth?'
+		})
+
+	if user.profile_image_id:
+		img = Image.objects.filter(eid=user.profile_image_id)[0]
+		img.delete()
+
+	new_img_id = add_image(request.FILES['image'].read(), 'png')
+	user.profile_image_id = new_img_id
+	user.save()
+	return JsonResponse({
+		'status': 'OK',
+		'new_id': user.profile_image_id
+	})
+
+def get_users_ratings(request):
+	users_json = []
+	for user in User.objects.all():
+		users_json.append({
+			'name': user.login,
+			'rating': user.rating
+		})
+	return JsonResponse({
+		'status': 'OK',
+		'users': users_json	
+	})
+
 def all_users(request):
 	users_json = []
 	for user in User.objects.all():
 		users_json.append({
-			'name': user.name,
+			'name': user.login,
 			'session_id': user.session_id
 		})
 

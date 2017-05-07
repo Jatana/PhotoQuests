@@ -1,0 +1,19 @@
+<div id="screen-darker"></div>
+<script>
+	$('body')[0].style.zIndex = '10';
+	var ScreenDarker = new (function() {
+		this. enable = () => {
+			// $('#screen-darker')[0].style.display = 'block';
+			$('#screen-darker')[0].style.zIndex = '1000';
+			$('#screen-darker')[0].style.opacity = 0.8;
+		}
+
+		this. disable = () => {
+			setTimeout(() => {
+				$('#screen-darker')[0].style.zIndex = '-800';	
+			}, 300);
+			$('#screen-darker')[0].style.opacity = 0;
+			// $('#screen-darker')[0].style.display = 'none';
+		}
+	})();
+</script>

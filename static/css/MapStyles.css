@@ -1,0 +1,26 @@
+.map-search-input {
+	font-family: Roboto;
+	margin: 10px;
+	outline: none;
+	font-size: 15px;
+	padding: 3px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	width: 300px;
+	background: white;
+	// border: 1px solid white;
+}
+
+.map-search-input:focus {
+	// border: 1px solid #3BA3D0;
+}
+
+.map-control-panel {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	height: 50px;
+	background: white;
+	display: none;
+}

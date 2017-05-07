@@ -7,13 +7,18 @@
 	top: 7px;
 }
 
+.compare-icon {
+	position: relative;
+	top: 7px;
+}
+
 #account-info {
 	display: none;
 	margin-right: 20px;
 	font-family: 'Cabin', sans-serif;
 	color: #bdc3c7;
 	position: relative;
-	top: -2px;
+	top: -3px;
 }
 
 #self-account-username {
@@ -28,6 +33,17 @@
 }
 
 #add-task-button:hover {
+	cursor: pointer;
+	color: #3498db;
+}
+
+#compare-button {
+	transition: 0.3s;
+	position: relative;
+	margin-right: 10px;
+}
+
+#compare-button:hover {
 	cursor: pointer;
 	color: #3498db;
 }
@@ -47,6 +63,21 @@
 }
 
 #add-task-button:after {
+	content: "";
+	position: absolute;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#000), to(transparent));
+	background-image: -webkit-linear-gradient(#000, transparent);
+	background-image: -moz-linear-gradient(#000, transparent);
+	background-image: -o-linear-gradient(#000, transparent);
+	background-image: linear-gradient(#FFF 0%, #bdc3c7 40%, #bdc3c7 60%, #FFF 100%);
+	top: -6px;
+	bottom: -6px;
+	right: -5px;
+	width: 1px;
+	z-index: 500;
+}
+
+#compare-button:after {
 	content: "";
 	position: absolute;
 	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#000), to(transparent));

@@ -1,39 +1,38 @@
 LoginManager = new (function() {
 	let self = this;
-	this.login = (username, password) => {
-		console.log(username);
+	$('#self-account-icon').on('click', () => {
+		location = '/profile';
+	})
+	this.login = (username, password, profile_image_id) => {
 		self.username = username;
+		self.profile_image_id = profile_image_id;
 		$('#login-button')[0].style.display = 'none';
 		$('#register-button')[0].style.display = 'none';
 		$('#account-info')[0].style.display = 'block';
 		$('#self-account-username')[0].innerHTML = username;
+		$('#self-account-icon')[0].src = '/cli/get_image/?id=' + self.profile_image_id;
 	};
 
 	$('#register-button').on('click', () => {
 		// location = '/register';
 		// console.log($('#screen-darker'));
-		$('#screen-darker')[0].style.display = 'block';
-		$('#screen-darker')[0].style.zIndex = '600';
-		$('#screen-darker')[0].style.opacity = 0.8;
+		ScreenDarker.enable();
 		$('#div-register-form')[0].style.display = 'block';
 
 
 		$('#screen-darker').on('click', () => {
-			$('#screen-darker')[0].style.zIndex = '-10';
-			$('#screen-darker')[0].style.display = 'none';
+			ScreenDarker.disable();
 			$('#div-register-form')[0].style.display = 'none';
 		})
 	})
 
 	$('#login-button').on('click', () => {
-		$('#screen-darker')[0].style.display = 'block';
-		$('#screen-darker')[0].style.zIndex = '600';
-		$('#screen-darker')[0].style.opacity = 0.8;
+		console.log('kekuuuuus');
+		ScreenDarker.enable();
 		$('#div-login-form')[0].style.display = 'block';
 
 		$('#screen-darker').on('click', () => {
-			$('#screen-darker')[0].style.zIndex = '-10';
-			$('#screen-darker')[0].style.display = 'none';
+			ScreenDarker.disable();
 			$('#div-login-form')[0].style.display = 'none';
 		})
 	})
@@ -100,7 +99,7 @@ LoginManager = new (function() {
 			url: '/cli/get_user_data/'
 		}).done((resp) => {
 			if (resp.status == 'OK') {
-				this.login(resp.user.name, "");
+				this.login(resp.user.name, "", resp.user.profile_image_id);
 			}
 		})
 	}

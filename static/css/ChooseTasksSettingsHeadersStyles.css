@@ -6,9 +6,9 @@
 	// padding: 3px;
 	margin: 3px;
 	// background: #3498db;
-	background: white;
 	width: 30px;
 	cursor: default;
+	position: relative;
 }
 
 .choose-filter {
@@ -42,7 +42,6 @@
 .filters-table td {
 	position: relative;
 	// border-right: 1px solid #bdc3c7;
-	border-right: 1px solid white;
 	height: 34px;
 	color: #95a5a6;
 }
@@ -63,8 +62,9 @@
 	background-image: -webkit-linear-gradient(#000, transparent);
 	background-image: -moz-linear-gradient(#000, transparent);
 	background-image: -o-linear-gradient(#000, transparent);
-	background-image: linear-gradient(#FFF 0%, #bdc3c7 40%, #bdc3c7 60%, #FFF 100%);
+	background-image: linear-gradient(rgb(255, 255, 255) 0%, #bdc3c7 40%, #bdc3c7 60%, rgb(255, 255, 255) 100%);
 	top: 0px;
+	right: 0px;
 	bottom: 0px;
 	width: 1px;
 	z-index: 500;
@@ -74,10 +74,11 @@
 	font-size: 16px;
 	border: none;
 	outline: none;
-	width: 500px;
+	width: 400px;
 	padding: 3px;
 	border-bottom: 1px solid #95a5a6;
 	// color: #95a5a6;
+	background: rgb(255, 255, 255);
 	font-family: 'Cabin', sans-serif;
 	z-index: 10;
 }
@@ -85,6 +86,7 @@
 .div-geo-map-input {
 	// border-left: 1px solid #95a5a6;
 	// border-bottom: 1px solid #95a5a6;
+	padding-left: 10px;
 	position: relative;
 }
 
@@ -93,7 +95,7 @@
 	color: #95a5a6;
 	font-family: 'Cabin', sans-serif;
 	font-size: 16px;
-	top: 14px;
+	top: 4px;
 	left: 4px;
 	z-index: 4;
 }
@@ -107,16 +109,18 @@
 .filter-settings-panel {
 	position: absolute;
 	z-index: 800;
-	top: 0px;
+	top: 51px;
 	left: 0px;
 	right: 0px;
-	background: white;
+	background: rgb(255, 255, 255);
 	padding: 3px;
 	font-family: 'Cabin', sans-serif;
 	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	box-shadow: 0px 2px 3px rgba(0,0,0,0.5);
 }
 
 #filter-settings-panel-difficuilty {
+	width: 260px;
 	font-size: 14px;
 	color: #3498db;
 	text-align: center;

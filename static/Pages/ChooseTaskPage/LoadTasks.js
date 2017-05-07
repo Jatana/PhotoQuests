@@ -33,13 +33,14 @@ TaskManager = new (function() {
 	}
 
 
-	$('#task-base')[0].style.height = $(document).height() - 51 + 'px';
+	$('#task-base')[0].style.height = $(document).height() - 182 + 'px';
 	$.ajax({
 		url: '/cli/get_tasks/',
 	}).done((resp) => {
 		console.log('responsed', resp);
 		let tasks = resp.tasks;
 		for (let task of tasks) {
+			console.log(task);
 			let avaTaskDiv = document.createElement('div');
 			avaTaskDiv.className = 'ava-task-div';
 			let taskGeoPosDiv = document.createElement('div');
@@ -62,7 +63,7 @@ TaskManager = new (function() {
 			taskClaimButton.className = 'task-claim-button';
 			taskClaimButton.innerHTML = 'submit photo';
 
-			geoPosText.innerHTML = 'Keks task keks';
+			geoPosText.innerHTML = task.name;
 
 			// taskGeoPosDiv.appendChild(geoIcon);
 			let taskMetaPanel = document.createElement('div');
@@ -124,24 +125,31 @@ TaskManager = new (function() {
 					key: 'AIzaSyCc_-YOaGnCH8qiuq03ek6T221fVsgH5UE'
 				}
 			}).done((resp) => {
-				console.log('real resp');
-				emap.setCenter(resp.results[0].geometry.location);
+				// console.log('real resp');
+				// main_map.map.setCenter(resp.results[0].geometry.location);
 				lat = resp.results[0].geometry.location.lat;
 				lng = resp.results[0].geometry.location.lng;
-				console.log(lat, lng)
-				let marker = new google.maps.Marker({
-					position: {lat: lat, lng: lng},
-					map: main_map,
-					icon: 'https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=dollar|FFFFFF',
-					// icon: 'http://127.0.0.1:8000/static/Logos/AspectRatio.png',
-					title: 'Task'
-				});
+				// console.log(lat, lng)
+				let tryAddMarker = () => {
+					if (main_map && main_map.map) {
+						let marker = new google.maps.Marker({
+							position: {lat: lat, lng: lng},
+							map: main_map.map,
+							icon: 'https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=dollar|FFFFFF',
+							// icon: 'http://127.0.0.1:8000/static/Logos/AspectRatio.png',
+							title: 'Task'
+						});
 
-				let infoWindow = new google.maps.InfoWindow({
-					content: 'kek'
-				});
+						let infoWindow = new google.maps.InfoWindow({
+							content: 'kek'
+						});
 
-				infoWindow.open(main_map, marker);
+						infoWindow.open(main_map.map, marker);
+					} else {
+						setTimeout(tryAddMarker, 200);
+					}
+				}
+				tryAddMarker();
 			});
 
 
@@ -151,11 +159,10 @@ TaskManager = new (function() {
 				TaskManager.filtrate();
 			}
 
-			console.log('realupd');
 
 			avaTaskDiv.onmouseover = () => {
 				console.log(resp);
-				main_map.setCenter({lat: lat, lng: lng});
+				main_map.map.setCenter({lat: lat, lng: lng});
 			}
 
 			taskClaimButton.onclick = () => {

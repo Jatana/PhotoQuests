@@ -1,0 +1,76 @@
+#logo-name {
+	font-family: "Raleway";
+	font-size: 32px;
+	font-style: normal;
+	font-weight: 200;
+	line-height: 1.0263;
+	display: inline;
+	animation-name: logo-name-frames;
+	animation-duration: 2s;
+	animation-timing-function: ease;
+}
+
+#logo-corner-right {
+	position: absolute;
+	bottom: -3px;
+	right: -6px;
+	border-right: 1px solid #7f8c8d;
+	border-bottom: 1px solid #7f8c8d;
+	width: 40px;
+	height: 20px;
+	animation-name: corner-right-frames;
+	animation-duration: 0.6s;
+	animation-timing-function: ease;
+}
+
+#logo-corner-left {
+	position: absolute;
+	top: -20px;
+	left: -6px;
+	border-top: 1px solid #7f8c8d;
+	border-left: 1px solid #7f8c8d;
+	width: 40px;
+	height: 20px;
+	animation-name: corner-left-frames;
+	animation-duration: 0.6s;
+	animation-timing-function: ease;
+}
+
+@keyframes corner-right-frames {
+	0% {
+		opacity: 0;
+		width: 1px;
+		height: 1px;
+	}
+
+	100% {
+		opacity: 1;
+		width: 40px;
+		height: 20px;
+	}
+}
+
+@keyframes corner-left-frames {
+	0% {
+		opacity: 0;
+		width: 1px;
+		height: 1px;
+	}
+
+	100% {
+		opacity: 1;
+		width: 40px;
+		height: 20px;
+	}
+}
+
+@keyframes logo-name-frames {
+	0% {
+		opacity: 0;
+	}
+
+
+	100% {
+		opacity: 1;
+	}
+}

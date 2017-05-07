@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Kekus</title>
+	{{static_list |safe}}
+</head>
+<body style="position: relative;">
+	{{static_jquery |safe}}
+	{% csrf_token %}
+	<script>
+		var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+		console.log(csrftoken);
+		function csrfSafeMethod(method) {
+			// these HTTP methods do not require CSRF protection
+			return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+		}
+		$.ajaxSetup({
+			beforeSend: function(xhr, settings) {
+				if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+					xhr.setRequestHeader("X-CSRFToken", csrftoken);
+				}
+			}
+		});
+	</script>
+	<script src="/static/load_map_module.js"></script>
+	{{screen_darker |safe}}
+	{{authentication |safe}}
+
+	<div id="task-big-preview" style="opacity: 0;z-index: -100;">
+		<div class="ava-task-div-bigger ava-task-div" style="width: 100%">
+			<div class="task-geopos-div">
+				<div class="geo-pos-text" style="display: inline; position: relative; top: -6px;" id="preview-geo-pos-text">Keks task keks
+				</div>
+				<div class="task-meta-panel" style="opacity: 1;">
+					<div class="task-bookmark material-icons" style="font-size: 30px;">bookmark_border
+					</div>
+					<div class="task-claim-button" id="task-preview-submit-button">
+						<div class="spinner" id="preview-spinner" style="display: none;">
+							<div class="double-bounce1"></div>
+							<div class="double-bounce2"></div>
+						</div>
+						submit photo
+						<input type="file" id="task-preview-submit-button-shadow">
+					</div>
+					<i class="task-preview-close-button material-icons" id="task-preview-close-button">close</i>
+				</div>
+			</div>
+			<div class="task-description-div" id="preview-task-description-div">ASDASDASDASD</div>
+			<div class="task-user-submissions">
+				<div class="task-user-submissions-props" id="task-user-submissions-props">Your submissions (0)</div>
+				<div id="task-user-submissions-panel">
+
+				</div>
+			</div>
+			<div class="task-meta-info-div-bigger task-meta-info-div" style="z-index: 300;">
+				<img class="task-poster-account-logo" src="/static/Logos/SomeLogo.png">
+				<div class="task-poster-name">Admin</div>
+				<div class="task-difficuilty-panel">
+					<i class="material-icons task-difficuilty-icon">trending_up</i>
+					<div class="task-difficuilty-value">Easy</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{header |safe}}
+	{{add_task |safe}}
+	<table class="table-filters-table">
+		<tr class="tr-settings-header">
+			<td class="div-choose-filters" style="border-bottom: 1px solid #bdc3c7">
+				<table class="filters-table" id="filters-table">
+					<tr>
+						<td>
+							<i class="material-icons choose-filter">near_me</i>
+							<div class="choose-filter-sign">near me</div>
+						</td>
+						<td id="td-filter-difficuilty">
+							<i class="material-icons choose-filter" id="choose-filter-difficuilty-icon">trending_up</i>
+							<div class="choose-filter-sign" id="choose-filter-sign-difficuilty">difficuilty</div>
+						</td>
+						<td id="td-filter-map">
+							<i class="material-icons choose-filter">explore</i>
+							<div class="choose-filter-sign">map</div>
+						</td>
+						<td>
+							<i class="material-icons choose-filter">subject</i>
+							<div class="choose-filter-sign">subject</div>
+						</td>
+						<td id="td-filter-bookmark">
+							<i class="material-icons choose-filter">bookmark_border</i>
+							<div class="choose-filter-sign">marks</div>
+						</td>
+					</tr>
+				</table>
+				<div class="filter-settings-panel" id="filter-settings-panel-difficuilty">
+					<div class="difficuilty-value">easy</div>
+					<div class="difficuilty-value">medium</div>
+					<div class="difficuilty-value">hard</div>
+				</div>
+				<script>
+					let filtersTable = document.getElementById("filters-table");
+					let elems = filtersTable.childNodes[1].childNodes[0].childNodes;
+					for (let elem of elems) {
+						if (elem.tagName = 'TD') {
+							elem.onclick = () => {
+								elem.style.color = '#3498db';
+							}
+						}
+					}
+				</script>
+			</td>
+			<td class="div-geo-map-input" style="border-bottom: 1px solid #bdc3c7">
+				<table style="width: 100%;">
+					<tr>
+						<td style="width: 400px; position: relative;">
+							<input type="text" id="geo-map-search-input">
+							<div class="input-placeholder" id="map-input-placeholder">search quest</div>
+							<script>
+								{
+									console.log($);
+									$('#map-input-placeholder').on('click', () => {
+										// console.log('onclick')
+										// console.log($('#map-input-placeholder'));
+										$('#map-input-placeholder')[0].style.display = 'none';
+										$('#geo-map-search-input')[0].focus();
+									});
+
+									$('#geo-map-search-input').focus(() => {
+										$('#map-input-placeholder')[0].style.display = 'none';
+									});
+
+									$('#geo-map-search-input').blur(() => {
+										if ($('#geo-map-search-input')[0].value == '') {
+											$('#map-input-placeholder')[0].style.display = 'block';
+										}
+									});						
+								}
+							</script>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<table class="table-tasks-table">
+		<tr style="width: 100%;">
+			<td style="background: rgb(240, 240, 240);z-index: 3;position: relative;" id="main-panel-ava-tasks-td">
+
+				<div style="overflow-y: scroll;" id="task-base">
+				</div>
+			</td>
+			<td id="td-pre-map">
+				<div id="div-pre-map">
+					
+				</div>
+			</td>
+		</tr>
+	</table>
+
+
+	<script src="/static/nice_image.js"></script>
+	<script src="/static/login/auth_handler.js?kek=6"></script>
+	<script src="/static/Pages/ChooseTaskPage/PreviewManager.js?kek=14"></script>
+	<script src="/static/Pages/ChooseTaskPage/LoadTasks.js?kek=39"></script>
+	<script src="/static/Pages/ChooseTaskPage/SettingsHeaderHandler.js?kek=123"></script>
+	<!-- <script src="/static/Pages/Compare/compare.js?kek=8"></script> -->
+	<script src="/static/Pages/ChooseTaskPage/map_config.js?kek=7"></script>
+	<script src="/static/Pages/Header/header.js?kek=true"></script>
+
+	<script>
+		$('#header-tab-tasks')[0].className = 'header-tab-value header-tab-value-focused';
+	</script>
+</body>
+</html>

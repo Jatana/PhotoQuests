@@ -1,0 +1,101 @@
+<table id="table-add-task">
+	<tr>
+		<td style="vertical-align: top; width: 400px; border-right: 1px solid rgb(200, 200, 200)">
+			<table style="width: 100%; background: white;" class="table-meta-add-info">
+				<tr>
+					<td class="pre-icon-td"><i class="material-icons">credit_card</i></td>
+					<td><input type="text" class="header-task-parameter" placeholder="Task Name" id="input-task-name"></td>
+				</tr>
+				<tr>
+					<td class="pre-icon-td">
+						<i class="material-icons">trending_up</i>
+					</td>
+					<td>
+						<div style="position: relative;">
+							<div id="choosed-difficuilty">Easy</div>
+							<table id="table-choose-difficuilty">
+								<tr>
+									<td>Easy</td>
+								</tr>
+								<tr>
+									<td>Medium</td>
+								</tr>
+								<tr>
+									<td>Hard</td>
+								</tr>
+							</table>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td class="pre-icon-td"><i class="material-icons">date_range</i></td>
+					<td><input type="text" class="header-task-parameter" placeholder="duration days"></td>
+				</tr>
+				<tr>
+					<td class="pre-icon-td"><i class="material-icons">map</i></td>
+					<td>
+						<input type="text" class="header-task-parameter" id="input-place">
+					</td>
+				</tr>
+			</table>
+		
+			<textarea name="" class="task-parameter" id="task-description" rows="10" placeholder="description"></textarea>
+			<div id="submit-task-button">add task</div>
+
+		</td>
+		<td id="add-task-td-pre-map">
+		</td>
+	</tr>
+</table>
+<script>
+
+	{
+
+		let table = $('#table-choose-difficuilty')[0];
+		// console.log('ererererer')
+		console.log(table.childNodes[1].childNodes)
+		let id = 0;
+		for (let tr of table.childNodes[1].childNodes) {
+			if (tr.tagName == 'TR') {
+				let td = tr.childNodes[1];
+				console.log(td);
+				let __id = id;
+				td.onclick = () => {
+					table.style.top = (-39 * __id) + 'px';
+					$('#choosed-difficuilty')[0].innerHTML = td.innerHTML;
+					table.style.opacity = '0';
+					table.style.zIndex = '-300';
+				}
+				id++;
+			}
+		}
+		$('#choosed-difficuilty').on('click', () => {
+			table.style.opacity = '1';	
+			table.style.zIndex = '300';
+		})
+	}
+</script>
+<script>
+	$('#submit-task-button').on('click', () => {
+		let name = $('#input-task-name')[0].value;
+		let place = $('#input-place')[0].value;
+		let difficuilty = $('#choosed-difficuilty')[0].innerHTML;
+		let descr = $('#task-description')[0].value;
+		console.log(name, place, difficuilty, descr);
+		$.ajax({
+			url: '/cli/add_task/',
+			data: {
+				'name': name,
+				'location': place,
+				'difficuilty': difficuilty,
+				'description': descr,
+				'poster_name': LoginManager.username
+			}
+		}).done((response) => {
+			if (response.status == 'OK') {
+				location = '/choosetask/';
+			}
+		})
+	});
+</script>
+<script src="/static/Pages/AddTask/add_task.js?kek=11"></script>

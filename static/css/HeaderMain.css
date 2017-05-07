@@ -1,0 +1,68 @@
+#header {
+	padding: 14px;
+	padding-left: 20px;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	z-index: 20000;
+	border-bottom: 1px solid rgb(200, 200, 200);
+	background: white;
+}
+
+#header-table {
+	width: 100%;
+}
+
+.header-tab {
+	padding-left: 28px;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+	width:1%;
+    white-space:nowrap;
+}
+
+
+.header-tab-value {
+	position: relative;
+	padding: 4px;
+	border: 1px solid rgb(255, 255, 255);
+	transition: 0.3s;
+}
+
+.header-tab-value:hover {
+	// border: 1px solid #7f8c8d;
+	cursor: pointer;
+}
+
+.header-tab-value-focused {
+	border: 1px solid #7f8c8d;
+}
+
+.header-tab-arrow-down {
+	text-align: center;
+}
+
+.header-tab-login {
+	text-align: right;
+	width: 0;
+}
+
+.header-logo {
+	padding-right: 30px;
+	width: 200px;
+}
+
+#header-tab-training {
+	position: relative;
+}
+
+#header-tab-training-notifications {
+	display: none;
+	position: absolute;
+	top: -4px;
+	right: -8px;
+	background: #e74c3c;
+	border-radius: 10px;
+	font-size: 12px;
+	padding: 3px;
+	color: white;
+
+}

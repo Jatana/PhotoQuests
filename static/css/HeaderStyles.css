@@ -153,3 +153,7 @@ header {
 	/*transition: 0.1s;*/
 	width: 300px;
 }
+
+#header-tab-training-notifications {
+	position: relative;
+}

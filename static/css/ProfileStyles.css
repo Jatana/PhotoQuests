@@ -1,0 +1,105 @@
+.pre-corner-div-profile-info {
+	background: rgb(240, 240, 240);
+	// margin: 10px;
+}
+
+.pre-div-profile-info {
+	// font-family: 'Cabin', sans-serif;
+	font-family: 'Raleway', sans-serif;
+	// margin-left: 20px;
+	// margin-right: 20px;
+	// padding-top: 100px;
+	// background: white;
+}
+
+.pre-up-profile-panel {
+	margin: 10px;
+	margin-left: 80px;
+	margin-right: 80px;
+}
+
+.div-profile-name {
+	font-size: 20px;
+	display: inline;
+}
+
+.div-profile-surname {
+	font-size: 20px;
+	margin-left: 2px;
+	display: inline;
+}
+
+.td-profile-names {
+	padding-left: 10px;
+}
+
+.div-profile-rating {
+	color: #e74c3c;
+	color: #c1c1c1;
+	font-weight: 200;
+}
+
+.div-profile-names {
+	padding-bottom: 1px;
+	font-weight: 200;
+	color: #c1c1c1;
+}
+
+.div-profile-login {
+	font-size: 30px;
+	font-weight: 200;
+}
+
+
+#user-submissions-panel {
+	margin-top: 10px;
+	height: 100%;
+	// background: white;
+}
+
+.td-profile-image {
+	position: relative;
+}
+
+.td-profile-image-edit {
+	color: #2c3e50;
+	position: absolute;
+	// bottom: 15px;
+	// right: 15px;
+	font-size: 32px;
+	top: calc(50% - 16px);
+	left: calc(50% - 16px);
+	opacity: 0;
+	transition: 0.3s;
+}
+
+.td-profile-image:hover .td-profile-image-edit {
+	opacity: 1;
+	cursor: pointer;
+}
+
+.td-profile-image:hover .img-profile-img {
+	cursor: pointer;
+	opacity: 0.7;
+}
+
+#profile-photo-button {
+	position: absolute;
+	// top: calc(50% - 16px);
+	// left: calc(50% - 16px);
+	top: 0px;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	// width: 32px;
+	// height: 32px;
+	opacity: 0;
+}
+
+.td-profile-meta {
+	padding-left: 5px;
+}
+
+.submission-img {
+	box-shadow: 0px 0px 4px 0 rgba(0,0,0,.25)
+}

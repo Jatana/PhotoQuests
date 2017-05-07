@@ -1,0 +1,127 @@
+#training-map-panel {
+	position: relative;
+	width: 100%;
+	height: calc(100vh - 66px);
+}
+
+#training-map-shadow {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+.training-task-circle {
+	position: absolute;
+	background: rgb(250, 250, 250);
+	font-family: 'Cabin', sans-serif;
+	font-size: 20px;
+	text-align: center;
+	border-radius: 27px;
+	border: 1px solid #3498db;
+	padding-top: 12px;
+	width: 50px;
+	height: 38px;
+	color: #3498db;
+	transition: 0.3s;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
+}
+
+.training-task-circle:hover {
+	color: #2ecc71;
+	border-color: #2ecc71;
+	cursor: pointer;
+}
+
+.training-task-up {
+	position: absolute;
+	text-align: left;
+	// border-bottom: 1px solid #2ecc71;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);
+	left: -123px;
+	top: -140px;
+	width: 300px;
+	opacity: 0;
+	z-index: -1;
+}
+
+.training-task-up::before {
+	z-index: 500;
+	transform: rotate(45deg);
+	position: absolute;
+	bottom: -17px;
+	left: 130px;
+	width: 35px;
+	height: 35px;
+	background: #fff;
+	box-shadow: 2px 2px 2px 0 rgba(0,0,0,.15);
+	content: '';
+}
+
+
+.training-task-circle:hover .training-task-up {
+	opacity: 1;
+	z-index: 1000;
+	top: -160px;
+}
+
+.training-task-down {
+	position: absolute;
+	text-align: left;
+	// border-bottom: 1px solid #2ecc71;
+	box-shadow: 0 -2px 4px 0 rgba(0,0,0,.25);
+	left: -123px;
+	bottom: -140px;
+	width: 300px;
+	opacity: 0;
+	z-index: -1;
+}
+
+.training-task-down::before {
+	z-index: 500;
+	transform: rotate(45deg);
+	position: absolute;
+	top: -17px;
+	left: 130px;
+	width: 35px;
+	height: 35px;
+	background: #fff;
+	box-shadow: -2px -2px 2px 0 rgba(0,0,0,.15);
+	content: '';
+}
+
+.training-task-circle:hover .training-task-down {
+	opacity: 1;
+	z-index: 1000;
+	bottom: -160px;
+}
+
+.training-task-circle-camera {
+	position: absolute;
+	top: -6px;
+	left: -6px;
+	font-size: 50px;
+	transition: 0.3s;
+}
+
+.training-task-open-circle {
+	position: absolute;
+	background: rgb(240, 240, 240);
+	top: 20px;
+	left: 20px;
+	width: 10px;
+	height: 10px;
+	border-radius: 20px;
+	transition: 0.3s;
+}
+
+.training-task-circle:hover .training-task-open-circle {
+	top: 5px;
+	left: 5px;
+	width: 40px;
+	height: 40px;
+	border-radius: 30px;
+}
+
+.training-task-circle:hover .training-task-circle-camera {
+	transform: rotate(180deg);
+}

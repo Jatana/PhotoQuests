@@ -1,0 +1,50 @@
+.training-task-circle {
+	position: relative;
+	font-family: 'Cabin', sans-serif;
+	font-size: 20px;
+	text-align: center;
+	border-radius: 27px;
+	border: 2px solid #3498db;
+	padding-top: 12px;
+	width: 50px;
+	height: 38px;
+	color: #3498db;
+	transition: 0.3s;
+}
+
+.training-task-circle:hover {
+	color: #2ecc71;
+	border-color: #2ecc71;
+	cursor: normal;
+}
+
+.training-task-circle-camera {
+	position: absolute;
+	top: -6px;
+	left: -6px;
+	font-size: 50px;
+	transition: 0.3s;
+}
+
+.training-task-open-circle {
+	position: absolute;
+	background: rgb(240, 240, 240);
+	top: 20px;
+	left: 20px;
+	width: 10px;
+	height: 10px;
+	border-radius: 20px;
+	transition: 0.3s;
+}
+
+.training-task-circle:hover .training-task-open-circle {
+	top: 5px;
+	left: 5px;
+	width: 40px;
+	height: 40px;
+	border-radius: 30px;
+}
+
+.training-task-circle:hover .training-task-circle-camera {
+	transform: rotate(180deg);
+}

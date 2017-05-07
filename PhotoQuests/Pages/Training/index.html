@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Kekus</title>
+	{{static_list |safe}}
+</head>
+<body style="position: relative;">
+	{{static_jquery |safe}}
+	{% csrf_token %}
+	<script>
+		var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+		console.log(csrftoken);
+		function csrfSafeMethod(method) {
+			// these HTTP methods do not require CSRF protection
+			return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+		}
+		$.ajaxSetup({
+			beforeSend: function(xhr, settings) {
+				if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+					xhr.setRequestHeader("X-CSRFToken", csrftoken);
+				}
+			}
+		});
+	</script>
+	<script src="/static/load_map_module.js"></script>
+	{{screen_darker |safe}}
+	{{authentication |safe}}
+
+	<div id="task-big-preview" style="opacity: 0;z-index: -100;">
+		<div class="ava-task-div-bigger ava-task-div" style="width: 100%">
+			<div class="task-geopos-div">
+				<div class="geo-pos-text" style="display: inline; position: relative; top: -6px;" id="preview-geo-pos-text">Keks task keks
+				</div>
+				<div class="task-meta-panel" style="opacity: 1;">
+					<div class="task-bookmark material-icons" style="font-size: 30px;">bookmark_border
+					</div>
+					<div class="task-claim-button" id="task-preview-submit-button">
+						<div class="spinner" id="preview-spinner" style="display: none;">
+							<div class="double-bounce1"></div>
+							<div class="double-bounce2"></div>
+						</div>
+						submit photo
+						<input type="file" id="task-preview-submit-button-shadow">
+					</div>
+					<i class="task-preview-close-button material-icons" id="task-preview-close-button">close</i>
+				</div>
+			</div>
+			<div class="task-description-div" id="preview-task-description-div">ASDASDASDASD</div>
+			<div class="task-user-submissions">
+				<div class="task-user-submissions-props" id="task-user-submissions-props">Your submissions (0)</div>
+				<div id="task-user-submissions-panel">
+
+				</div>
+			</div>
+			<div class="task-meta-info-div-bigger task-meta-info-div" style="z-index: 300;">
+				<img class="task-poster-account-logo" src="/static/Logos/SomeLogo.png">
+				<div class="task-poster-name">Admin</div>
+				<div class="task-difficuilty-panel">
+					<i class="material-icons task-difficuilty-icon">trending_up</i>
+					<div class="task-difficuilty-value">Easy</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	{{header |safe}}
+	{{add_task |safe}}
+	
+	<div id="training-map-panel">
+		<canvas id="training-map-shadow"></canvas>
+		<!-- <div class="training-task-circle"> -->
+			<!-- 1 -->
+			<!-- <i class="material-icons training-task-circle-camera" style="font-size: 62px;">camera</i> -->
+			<!-- <div class="training-task-open-circle"></div> -->
+			<!-- <div class="training-ava-task"></div> -->
+		<!-- </div> -->
+	</div>
+
+	<script>
+		{
+			let panel = $('#training-map-panel')[0];
+			let canvas = $('#training-map-shadow')[0];
+			let context = canvas.getContext('2d');
+			let cords = [
+				[0.71, 0.4],
+				[0.66, 0.1],
+				[0.6, 0.38],
+				[0.4, 0.6],
+				[0.79, 0.7],
+				[0.16, 0.32],
+				[0.33, 0.84],
+				[0.53, 0.7],
+				[0.21, 0.06],
+				[0.16, 0.76],
+				[0.87, 0.39],
+				[0.5, 0.2],
+				[0.9, 0.45],
+				[0.08, 0.64],
+				[0.16, 0.56],
+			];
+			let width = panel.getBoundingClientRect().width;
+			let height = panel.getBoundingClientRect().height;
+
+			canvas.width = width;
+			canvas.height = height;
+
+			let createTaskElem = () => {
+				let avaTaskDiv = document.createElement('div');
+				avaTaskDiv.className = 'training-task ava-task-div';
+				let taskGeoPosDiv = document.createElement('div');
+				taskGeoPosDiv.className = 'task-geopos-div';
+				let geoIcon = document.createElement('i');
+				geoIcon.className = 'material-icons';
+				geoIcon.innerHTML = 'place';
+				let geoPosText = document.createElement('div');
+				geoPosText.className = 'geo-pos-text';
+				geoPosText.style.display = 'inline';
+				geoPosText.style.position = 'relative';
+				geoPosText.style.top = '-6px';
+
+				let taskBookmark = document.createElement('div');
+				taskBookmark.className = 'task-bookmark material-icons';
+				taskBookmark.style.fontSize = '30px';
+				taskBookmark.innerHTML = 'bookmark_border';
+
+				let taskClaimButton = document.createElement('div');
+				taskClaimButton.className = 'task-claim-button';
+				taskClaimButton.innerHTML = 'submit photo';
+
+				geoPosText.innerHTML = 'Kekus';
+
+				// taskGeoPosDiv.appendChild(geoIcon);
+				let taskMetaPanel = document.createElement('div');
+				taskMetaPanel.className = 'task-meta-panel';
+
+				taskMetaPanel.appendChild(taskBookmark);
+				taskMetaPanel.appendChild(taskClaimButton);
+
+				taskGeoPosDiv.appendChild(geoPosText);
+				taskGeoPosDiv.appendChild(taskMetaPanel);
+
+				avaTaskDiv.appendChild(taskGeoPosDiv);
+
+				let taskDescriptionDiv = document.createElement('div');
+				taskDescriptionDiv.className = 'task-description-div';
+				taskDescriptionDiv.innerHTML = 'kekus';
+
+				avaTaskDiv.appendChild(taskDescriptionDiv);
+
+				let taskMetaInfoDiv = document.createElement('div');
+				taskMetaInfoDiv.className = 'task-meta-info-div';
+				taskMetaInfoDiv.style.zIndex = '300';
+
+				let accLogo = document.createElement('img');
+				accLogo.className = 'task-poster-account-logo';
+				accLogo.src = '/static/Logos/SomeLogo.png';
+
+				let taskPosterName = document.createElement('div');
+				taskPosterName.className = 'task-poster-name';
+				taskPosterName.innerHTML = 'poster';
+
+
+				let iconTrendingUp = document.createElement('i');
+				iconTrendingUp.className = 'material-icons task-difficuilty-icon';
+				iconTrendingUp.innerHTML = 'trending_up';
+
+				let taskDifficuiltyValue = document.createElement('div');
+				taskDifficuiltyValue.className = 'task-difficuilty-value';
+				taskDifficuiltyValue.innerHTML = 'hard';
+
+				let taskDifficuiltyPanel = document.createElement('div');
+				taskDifficuiltyPanel.className = 'task-difficuilty-panel';
+				taskDifficuiltyPanel.appendChild(iconTrendingUp);
+				taskDifficuiltyPanel.appendChild(taskDifficuiltyValue);
+
+				taskMetaInfoDiv.appendChild(accLogo);
+				taskMetaInfoDiv.appendChild(taskPosterName);
+				taskMetaInfoDiv.appendChild(taskDifficuiltyPanel);
+				
+
+				// avaTaskDiv.appendChild(taskMetaInfoDiv);
+				return avaTaskDiv;
+			}
+
+			for (let i = 0; i < cords.length; i++) {
+				let cord = cords[i];
+				let e = document.createElement('div');
+				e.className = 'training-task-circle';
+				e.style.left = cord[0] * width + 'px';
+				e.style.top = cord[1] * height + 'px';
+				e.innerHTML = i + 1;
+				let task = createTaskElem();
+				if (cord[1] * height > 200) {
+					task.className = 'training-task-up ava-task-div';
+				} else {
+					task.className = 'training-task-down ava-task-div';
+				}
+				e.appendChild(task);
+				panel.appendChild(e);
+			}
+
+			for (let i = 0; i < cords.length - 1; i++) {
+				let first = cords[i];
+				let second = cords[i + 1];
+				console.log(first[0] * width, first[1] * height);
+				console.log(second[0] * width, second[1] * height);
+
+				context.strokeStyle = '#3498db';
+				context.moveTo(first[0] * width + 25, first[1] * height + 25);
+				context.lineTo(second[0] * width + 25, second[1] * height + 25);
+				context.stroke();
+			}
+		}		
+	</script>
+
+
+	<script src="/static/login/auth_handler.js?kek=6"></script>
+	<script src="/static/Pages/Header/header.js?kek=true"></script>
+
+	<script>
+		$('#header-tab-training')[0].className = 'header-tab-value header-tab-value-focused';
+	</script>
+</body>
+</html>

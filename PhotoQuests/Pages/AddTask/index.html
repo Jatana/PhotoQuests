@@ -3,23 +3,10 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Kekus</title>
-	<link rel="stylesheet" href="/static/css/MainStyles.css?always_update=true">
-	<link rel="stylesheet" href="/static/css/HeaderStyles.css?always_update=true">
-	<link rel="stylesheet" href="/static/css/LoginStyles.css?always_update8=true">
-	<link rel="stylesheet" href="/static/css/ChooseTasksStyles.css?always_update4=true">
-	<link rel="stylesheet" href="/static/css/ChooseTasksSettingsHeadersStyles.css?always_update=true">
-	<link rel="stylesheet" href="/static/css/UIStyles.css?always_update=true">
-	<link rel="stylesheet" href="/static/css/AccountPanelStyles.css?always_update=true">
-	<link rel="stylesheet" href="/static/css/AddTaskStyles.css?always_update10=true">
-	<link rel="stylesheet" type="text/css"
-		  href="https://fonts.googleapis.com/css?family=Raleway:400i">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina|Lato|Cabin" rel="stylesheet">
+	{{static_list |safe}}
 </head>
 <body style="position: relative;">
-	<script src="/static/jquery-3.1.1.min.js"></script>
+	<script src="/static/jquery-3.2.0.min.js"></script>
 	<script src="/static/jquery-cookie.js"></script>
 	<div id="screen-darker">
 	</div>
@@ -76,136 +63,10 @@
 		<div id="login-error"></div>
 		<div id="action-login-button">log in</div>
 	</div>
-
-	<table style="width: 100%;">
-		<tr class="tr-settings-header">
-			<td class="div-geo-map-input" style="border-bottom: 1px solid #bdc3c7">
-				<table style="width: 100%; height: 50px;">
-					<tr>
-						<td style="text-align: right">
-							<div id="login-button">Log in</div>
-							<div id="register-button" class="button">Sign up</div>
-							<div id="account-info" style="display: none">
-								<div id="add-task-button" style="display: inline;">
-									<i class="material-icons add-task-icon">add_circle</i>
-									add task
-								</div>
-
-								<div class="sub-account-panel">
-									<img id="self-account-icon" src="/static/Logos/SomeLogo.png" height="27px">
-									<div id="self-account-username" class="account-username">
-										Admin
-									</div>
-								</div>
-							</div>
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-		<tr style="vertical-align: top">
-			<td style="background: rgb(240, 240, 240);" id="td-task-parameters">
-				<div class="div-task-parameters">
-					<table class="table-task-parameters" style="background: white">
-						<tr>
-							<td>
-								<input type="text" class="header-task-parameter" placeholder="Task Name" id="input-task-name">
-							</td>
-							<td>
-								<i class="material-icons header-task-icon">place</i>
-							</td>
-							<td style="width: 100%">
-								<input type="text" class="header-task-parameter" id="input-place">
-							</td>
-							<td>
-								<i class="material-icons header-task-icon">trending_up</i>
-							</td>
-							<td style="position: relative;">
-								<div id="choosed-difficuilty">Easy</div>
-								<table id="table-choose-difficuilty">
-									<tr>
-										<td>Easy</td>
-									</tr>
-									<tr>
-										<td>Medium</td>
-									</tr>
-									<tr>
-										<td>Hard</td>
-									</tr>
-								</table>
-							</td>
-							<td>
-								<i class="material-icons header-task-icon">date_range</i>
-							</td>
-							<td>
-								<input type="text" class="header-task-parameter" value="30 months">
-							</td>
-						</tr>
-					</table>
-					<div id="map"></div>
-					<script>
-
-						{
-
-							let table = $('#table-choose-difficuilty')[0];
-							// console.log('ererererer')
-							console.log(table.childNodes[1].childNodes)
-							let id = 0;
-							for (let tr of table.childNodes[1].childNodes) {
-								if (tr.tagName == 'TR') {
-									let td = tr.childNodes[1];
-									console.log(td);
-									let __id = id;
-									td.onclick = () => {
-										table.style.top = (-39 * __id) + 'px';
-										$('#choosed-difficuilty')[0].innerHTML = td.innerHTML;
-										table.style.opacity = '0';
-										table.style.zIndex = '-300';
-									}
-									id++;
-								}
-							}
-							$('#choosed-difficuilty').on('click', () => {
-								table.style.opacity = '1';	
-								table.style.zIndex = '300';
-							})
-						}
-					</script>
-					<!-- <input type="text" id="task-name" class="task-parameter" placeholder="task name"> -->
-					<textarea name="" class="task-parameter" id="task-description" rows="10" placeholder="description"></textarea>
-					<div id="submit-task-button">add task</div>
-
-					<script>
-						$('#submit-task-button').on('click', () => {
-							let name = $('#input-task-name')[0].value;
-							let place = $('#input-place')[0].value;
-							let difficuilty = $('#choosed-difficuilty')[0].innerHTML;
-							let descr = $('#task-description')[0].value;
-							console.log(name, place, difficuilty, descr);
-							$.ajax({
-								url: '/cli/add_task/',
-								data: {
-									'name': name,
-									'location': place,
-									'difficuilty': difficuilty,
-									'description': descr,
-									'poster_name': LoginManager.username
-								}
-							}).done((response) => {
-								if (response.status == 'OK') {
-									location = '/choosetask/';
-								}
-							})
-						});
-					</script>
-				</div>
-			</td>
-		</tr>
-	</table>
-	<footer style="width: 100%;height:100px;background: rgb(240, 240, 240)"></footer>
-
+	{{header |safe}}
+	{{add_task |safe}}
 	<script src="/static/login/auth_handler.js?kek=4"></script>
-	<script src="/static/Pages/AddTask/add_task.js?kek=4"></script>
+	<script src="/static/Pages/AddTask/add_task.js?kek=6"></script>
 	<script>
 	{
 		let map = document.getElementById("map");
@@ -216,59 +77,10 @@
 		}, 100);
 	}
 	</script>
-	<script>
-	var panorama;
-	var emap;
-	function initMap() {
-		var astorPlace = {lat: 40.729884, lng: -73.990988}	
-		// Set up the map
-		var map = new google.maps.Map(document.getElementById('map'), {
-			center: astorPlace,
-			zoom: 18,
-			streetViewControl: false,
-			mapTypeId: google.maps.MapTypeId.SATELLITE
-		});
-		emap = map;
-		console.log(map);
-		$('#map').on('mousemove', () => {
-			let lng = map.getCenter().lng();
-			let lat = map.getCenter().lat();
-			$.ajax({
-				url: 'https://maps.googleapis.com/maps/api/geocode/json',
-				data: {
-					'latlng': lat + ',' + lng,
-					'key': 'AIzaSyCc_-YOaGnCH8qiuq03ek6T221fVsgH5UE'
-				}
-			}).done((response) => {
-				console.log(response.results[0].formatted_address);
-				$('#input-place')[0].value = response.results[0].formatted_address;
-			})
-		})
-		// Set up the markers on the ma	
-		// We get the map's default panorama and set up some defaults.
-		// Note that we don't yet set it visible.
-		panorama = map.getStreetView();
-		panorama.setPosition(astorPlace);
-		panorama.setPov(/** @type {google.maps.StreetViewPov} */({
-			heading: 265,
-			pitch: 0
-		}));
-	}
-
-
-	function toggleStreetView() {
-	  var toggle = panorama.getVisible();
-	  if (toggle == false) {
-	    panorama.setVisible(true);
-	  } else {
-	    panorama.setVisible(false);
-	  }
-	}
-    </script>
-    <script
+    <!-- <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCc_-YOaGnCH8qiuq03ek6T221fVsgH5UE&callback=initMap"
         async defer>
-    </script>
+    </script> -->
     <script>
     	
 		let onBodyResize = () => {
@@ -282,5 +94,6 @@
 		onBodyResize();
     	
     </script>
+    <script src="/static/Pages/Header/header.js"></script>
 </body>
 </html>

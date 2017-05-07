@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse
 import re
 from PQDB.models import Task, User
 from Random.random_engine import random_id_no_coll
+from PQDB.user_views import get_request_sender
 
 # Create your views here.
 
@@ -13,7 +14,7 @@ def validate_create_task_data(data):
 			'min_length': 3
 		},
 		'description': {
-			'max_length': 128,
+			'max_length': 1024,
 			'min_length': 10
 		},
 		'difficuilty': {
@@ -51,16 +52,24 @@ def create_task(request):
 	if val:
 		val['status'] = 'FAILED'
 		return JsonResponse(val)
+
+	user = get_request_sender(request)
+	if user is None:
+		return {
+			'status': 'FAILED',
+			'error': 'auth?'
+		}
 	
-		
 	task = Task(
 		name=data['name'],
 		difficuilty=data['difficuilty'],
 		description=data['description'],
 		location=data['location'],
-		poster=User.objects.filter(name=data['poster_name'])[0],
-
+		poster=user,
+		expire_date="",
+		eid=random_id_no_coll(Task.objects)
 	)
+
 	task.save()
 	return JsonResponse({
 		'status': 'OK',
@@ -74,9 +83,8 @@ def get_tasks(request):
 			'description': task.description,
 			'difficuilty': task.difficuilty,
 			'location': task.location,
-			'poster_name': task.poster.name,
+			'poster_name': task.poster.login,
 			'id': task.eid,
-			'eid': random_id_no_coll(Task.objects)
 		})
 
 	resp = {
@@ -84,3 +92,8 @@ def get_tasks(request):
 		'tasks': tasks
 	}
 	return JsonResponse(resp)
+
+def clear_tasks(request):
+	for task in Task.objects.all():
+		task.delete()
+	return HttpResponse('cleared')

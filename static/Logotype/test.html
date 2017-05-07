@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Logo</title>
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Raleway:200">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+</head>
+<body>
+	<div style="text-align: center; margin-top: 50px;">
+		<div style="position: relative; display: inline;">
+			<div id="logo-name">
+				FOT<i class="material-icons" style="font-size: 32px; position: relative; top: 4px; color: #bdc3c7">camera</i>GRAFF
+			</div>
+			<div id="corner-right"></div>
+			<div id="corner-left"></div>
+		</div>
+	</div>
+
+	<style>
+		#logo-name {
+			font-family: "Raleway";
+			font-size: 32px;
+			font-style: normal;
+			font-weight: 200;
+			line-height: 1.0263;
+			display: inline;
+			animation-name: logo-name-frames;
+			animation-duration: 2s;
+			animation-timing-function: ease;
+		}
+
+		#corner-right {
+			position: absolute;
+			bottom: -3px;
+			right: -6px;
+			border-right: 1px solid #7f8c8d;
+			border-bottom: 1px solid #7f8c8d;
+			width: 40px;
+			height: 20px;
+			animation-name: corner-right-frames;
+			animation-duration: 0.6s;
+			animation-timing-function: ease;
+		}
+		
+		#corner-left {
+			position: absolute;
+			top: -20px;
+			left: -6px;
+			border-top: 1px solid #7f8c8d;
+			border-left: 1px solid #7f8c8d;
+			width: 40px;
+			height: 20px;
+			animation-name: corner-left-frames;
+			animation-duration: 0.6s;
+			animation-timing-function: ease;
+		}
+
+		@keyframes corner-right-frames {
+			0% {
+				opacity: 0;
+				width: 1px;
+				height: 1px;
+			}
+
+			100% {
+				opacity: 1;
+				width: 40px;
+				height: 20px;
+			}
+		}
+
+		@keyframes corner-left-frames {
+			0% {
+				opacity: 0;
+				width: 1px;
+				height: 1px;
+			}
+
+			100% {
+				opacity: 1;
+				width: 40px;
+				height: 20px;
+			}
+		}
+
+		@keyframes logo-name-frames {
+			0% {
+				opacity: 0;
+			}
+
+
+			100% {
+				opacity: 1;
+			}
+		}
+
+	</style>
+</body>
+</html>

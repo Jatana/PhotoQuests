@@ -4,6 +4,8 @@ import re
 from PQDB.models import Task, User, Image, Submission
 from PQDB.user_views import get_request_sender
 from PQDB.image_views import add_image
+from Random.random_engine import random_id_no_coll
+import base64
 
 # Create your views here.
 
@@ -52,12 +54,19 @@ def create_submit(request):
 		'status': 'FAILED',
 		'error': 'you are unathorized'
 	})
-
+	
 	# val = validate_create_task_data(data)
 	# if val:
 		# val['status'] = 'FAILED'
 		# return JsonResponse(val)
-	image_id = add_image(data['bytes'], 'png')
+
+	# print('hello')
+	# print(request.FILES['image'].read(), dir(request.FILES['image']))
+	# return JsonResponse({
+		# 'status': 'OK'
+	# })
+
+	image_id = add_image(request.FILES['image'].read(), 'png')
 
 	submit = Submission(
 		submit_image_id=image_id,
@@ -66,7 +75,8 @@ def create_submit(request):
 		submit_number=len(Submission.objects.filter(
 			sender_id=sender.eid,
 			target_task_id=data['target_task_id'])
-		)
+		),
+		eid=random_id_no_coll(Submission.objects)
 	)
 
 	submit.save()
@@ -97,6 +107,23 @@ def get_all_submissions(request):
 
 def get_submission(request):
 	data = request.GET if request.method == 'GET' else request.POST
+
+	if data.get('eid', False):
+		subs = Submission.objects.filter(eid=data['eid'])
+		if subs:
+			return JsonResponse({
+				'status': 'OK',
+				'submission': {
+					'sender_id': subs[0].sender_id,
+					'target_task_id': subs[0].target_task_id,
+					'submit_image_id': subs[0].submit_image_id
+				}
+			})
+		else:
+			return JsonResponse({
+				'status': 'FAILED'
+			})
+
 	sender = get_request_sender(request)
 	if sender is None: return JsonResponse({
 		'status': 'FAILED',
@@ -123,7 +150,16 @@ def get_submission(request):
 		}
 	})
 
-
 def get_submissions(request):
 	data = request.GET if request.method == 'GET' else request.POST
+	if data.get('only_ids', False):
+		user = get_request_sender(request)
+		if not user:
+			return JsonResponse({
+				'status': 'FAILED'
+			})
+		return JsonResponse({
+			'status': 'OK',
+			'ids': [sub.eid for sub in Submission.objects.filter(sender_id=user.eid)]
+		})
 	return HttpResponse(str(Submission.objects.all()))

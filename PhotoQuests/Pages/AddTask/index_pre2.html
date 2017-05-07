@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Kekus</title>
+	{{static_list |safe}}
+</head>
+<body style="position: relative;">
+	<script src="/static/jquery-3.2.0.min.js"></script>
+	<script src="/static/jquery-cookie.js"></script>
+	<div id="screen-darker">
+	</div>
+	<div id="div-register-form">
+		<table class="table-login-form">
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">account_circle</i>		
+				</td>
+				<td class="td-pre-input">
+					<input type="text" id="register-input-username" class="login-input" placeholder="Username">
+				</td>
+			</tr>
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">lock</i>	
+				</td>
+				<td class="td-pre-input">
+					<input type="password" id="register-input-password" class="login-input" placeholder="Password">
+				</td>
+			</tr>
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">email</i>	
+				</td>
+				<td class="td-pre-input">
+					<input type="text" id="register-input-email" class="login-input" placeholder="email">
+				</td>
+			</tr>
+		</table>
+		<div id="register-error"></div>
+		<div id="action-register-button">register</div>
+	</div>
+
+	<div id="div-login-form">
+		<table class="table-login-form">
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">account_circle</i>		
+				</td>
+				<td class="td-pre-input">
+					<input type="text" id="login-input-username" class="login-input" placeholder="Username">
+				</td>
+			</tr>
+			<tr>
+				<td class="td-pre-icon">
+					<i class="material-icons">lock</i>	
+				</td>
+				<td class="td-pre-input">
+					<input type="password" id="login-input-password" class="login-input" placeholder="Password">
+				</td>
+			</tr>
+		</table>
+		<div id="login-error"></div>
+		<div id="action-login-button">log in</div>
+	</div>
+	{{add_task |safe}}
+	<script src="/static/login/auth_handler.js?kek=4"></script>
+	<script>
+	{
+		let map = document.getElementById("map");
+		let mapToggle = document.getElementById('actions-panel-image-toggle-map');
+		let tasksTd = document.getElementById('main-panel-ava-tasks-td');
+		setTimeout(() => {
+			// map.style.display = 'none';
+		}, 100);
+	}
+	</script>
+    <!-- <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCc_-YOaGnCH8qiuq03ek6T221fVsgH5UE&callback=initMap"
+        async defer>
+    </script> -->
+    <script>
+    	
+		let onBodyResize = () => {
+			let width = window.innerWidth;
+			let height = window.innerHeight;
+			let map = document.getElementById('map');
+			map.style.width = (width - 300) + 'px';
+			map.style.height = (height - 50) + 'px';
+			console.log(screen.height);
+		}
+		onBodyResize();
+    	
+    </script>
+    <script src="/static/Pages/Header/header.js"></script>
+</body>
+</html>
